@@ -5,7 +5,7 @@ import Location from '../../services/Location'
 
 export interface Props {
   temperature: number | undefined;
-  loadWeatherData: () => void;
+  loadWeatherData: (lat: number, lon: number) => void;
 }
 
 class ReactWeather extends Component<Props> {
@@ -15,8 +15,11 @@ class ReactWeather extends Component<Props> {
 
   componentDidMount() {
     const locationService = new LocationService();
-    locationService.getLocation().then((location: Location) => {console.log(location.lat, location.lon)});
-    this.props.loadWeatherData()
+    locationService.getLocation().then(
+      (location: Location) => {
+        this.props.loadWeatherData(location.lat, location.lon);
+      });
+
   }
 
   render() {
