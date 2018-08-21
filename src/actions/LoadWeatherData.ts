@@ -2,7 +2,7 @@ import setTemperature from "./SetTemperature";
 import darkSkyService from '../services/darksky'
 
 export default () => (dispatch: any) => {
-    darkSkyService(-37.8136, 144.9631)
+    return darkSkyService(-37.8136, 144.9631)
         .then((resp: any) => {
             dispatch(
                 setTemperature(parseFloat(resp.data.currently.temperature))
