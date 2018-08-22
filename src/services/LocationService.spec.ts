@@ -12,7 +12,7 @@ describe('Location Service', () => {
 
     // global is used to test functions in window object
     // @ts-ignore
-    global.navigator.geolocation =  {
+    global.navigator.geolocation = {
       getCurrentPosition:
       mockGetCurrentPosition
     };

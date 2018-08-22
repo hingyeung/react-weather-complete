@@ -1,4 +1,4 @@
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import Temperature from '../ui/Temperature';
 import { AppState } from '../../types';
 import { Dispatch } from 'redux';

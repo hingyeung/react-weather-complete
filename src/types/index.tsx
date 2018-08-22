@@ -1,7 +1,7 @@
 import { Action } from 'redux';
 
 export interface AppState {
-    temperature: number
+  temperature: number
 }
 
 // Component Props
@@ -15,7 +15,7 @@ export interface ITemperatureProps {
 
 // Action Types
 export enum ActionType {
-    SET_TEMPERATURE
+  SET_TEMPERATURE
 }
 
 // Actions

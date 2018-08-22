@@ -21,7 +21,7 @@ class ReactWeather extends Component<IReactWeatherProps> {
 
   render() {
     return (
-      <Temperature />
+      <Temperature/>
     )
   }
 }
