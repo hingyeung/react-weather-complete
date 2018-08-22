@@ -6,11 +6,11 @@ describe('Location Service', () => {
   beforeEach(() => {
     mockGetCurrentPosition = jest.fn().mockImplementation(
       (resolve: any, reject: any) => {
-        console.log('geo location geo location', resolve);
         resolve({coords: {lattitude: 1, longitude: 2}});
       }
     );
 
+    // global is used to test functions in window object
     // @ts-ignore
     global.navigator.geolocation =  {
       getCurrentPosition:

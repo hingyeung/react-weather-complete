@@ -1,7 +1,8 @@
 import setTemperature from "./SetTemperature";
 import darkSkyService from '../services/darksky'
+import { Dispatch } from 'redux';
 
-export default (lat: number, lon: number) => (dispatch: any) => {
+export default (lat: number, lon: number) => (dispatch: Dispatch) => {
     darkSkyService(lat, lon)
         .then((resp: any) => {
             dispatch(

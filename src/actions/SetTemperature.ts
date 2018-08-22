@@ -1,9 +1,12 @@
-import {SET_TEMPERATURE} from "../constants";
+import { ActionCreator } from 'redux';
+import { ActionType, SetTemperatureAction } from '../types';
 
 
-export default (temperature: number) => {
+const action: ActionCreator<SetTemperatureAction> = (temperature: number) => {
     return {
-        type: SET_TEMPERATURE,
+        type: ActionType.SET_TEMPERATURE,
         payload: temperature
     }
 };
+
+export default action;

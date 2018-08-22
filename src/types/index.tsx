@@ -1,12 +1,25 @@
-import {SET_TEMPERATURE} from '../constants'
+import { Action } from 'redux';
 
 export interface AppState {
     temperature: number
 }
 
-export interface SetTemperatureAction {
-    type: SET_TEMPERATURE;
-    payload: number;
+// Component Props
+export interface IReactWeatherProps {
+  loadWeatherData: (lat: number, lon: number) => void;
 }
 
-export type ReducerFunction = (state: AppState, action: any) => any
+export interface ITemperatureProps {
+  temperature: number;
+}
+
+// Action Types
+export enum ActionType {
+    SET_TEMPERATURE
+}
+
+// Actions
+export interface SetTemperatureAction extends Action {
+  type: ActionType.SET_TEMPERATURE,
+  payload: number
+}

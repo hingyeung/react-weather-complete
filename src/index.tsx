@@ -7,6 +7,7 @@ import storeFactory from './store'
 import ReactWeather from './components/containers/ReactWeather';
 
 const store = storeFactory();
+console.log('InitialState');
 console.log(store.getState());
 ReactDOM.render(
     <Provider store={store}>

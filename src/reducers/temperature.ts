@@ -1,9 +1,8 @@
-import {SET_TEMPERATURE} from '../constants'
-import {SetTemperatureAction} from "../types/index";
+import { ActionType, SetTemperatureAction } from "../types";
 
 export default (state: number = 0, action: SetTemperatureAction) => {
     switch (action.type) {
-        case SET_TEMPERATURE:
+        case ActionType.SET_TEMPERATURE:
             return action.payload;
         default:
             return state;
