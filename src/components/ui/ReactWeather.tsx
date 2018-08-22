@@ -4,6 +4,7 @@ import LocationService from '../../services/LocationService';
 import Location from '../../services/Location'
 import Temperature from '../containers/Temperature';
 import { IReactWeatherProps } from '../../types';
+import Summary from '../containers/Summary';
 
 class ReactWeather extends Component<IReactWeatherProps> {
   constructor(props: IReactWeatherProps) {
@@ -21,7 +22,10 @@ class ReactWeather extends Component<IReactWeatherProps> {
 
   render() {
     return (
-      <Temperature/>
+      <div>
+        <Temperature/>
+        <Summary/>
+      </div>
     )
   }
 }
