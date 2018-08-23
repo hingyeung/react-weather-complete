@@ -4,12 +4,12 @@ import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 import { Provider } from "react-redux";
 import storeFactory from './store'
-import ReactWeather from './components/containers/ReactWeather';
+import App from './components/containers/App';
 
 const store = storeFactory();
 ReactDOM.render(
   <Provider store={store}>
-    <ReactWeather/>
+    <App/>
   </Provider>,
   document.getElementById('root') as HTMLElement
 );

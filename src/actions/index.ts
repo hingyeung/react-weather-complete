@@ -1,3 +1,7 @@
-import loadWeatherData from './LoadWeatherData';
+import setTemperature from './SetTemperature';
+import setSummary from './SetSummary';
+import setTemperatureUnit from './SetTemperatureUnit';
+import setLocation from './SetLocation'
+import loadWeatherData from './LoadWeatherData'
 
-export {loadWeatherData};
+export {loadWeatherData, setTemperature, setSummary, setTemperatureUnit, setLocation};

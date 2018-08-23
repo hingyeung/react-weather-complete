@@ -1,4 +1,5 @@
 class Location {
+  static readonly UNSET = new Location(999, 999);
   readonly lat: number;
   readonly lon: number;
 

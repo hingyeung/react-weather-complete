@@ -1,13 +1,13 @@
 import actionToBeTested from './LoadWeatherData';
-import setTemperature from "../action_factories/SetTemperature";
-import setTemperatureUnit from "../action_factories/SetTemperatureUnit";
-import setSummary from '../action_factories/SetSummary';
+import setTemperature from "./SetTemperature";
+import setTemperatureUnit from "./SetTemperatureUnit";
+import setSummary from './SetSummary';
 import { Dispatch } from 'redux';
 import { TemperatureUnit, Units } from '../types';
 
-jest.mock('../action_factories/SetTemperature');
-jest.mock('../action_factories/SetTemperatureUnit');
-jest.mock('../action_factories/SetSummary');
+jest.mock('../actions/SetTemperature');
+jest.mock('../actions/SetTemperatureUnit');
+jest.mock('../actions/SetSummary');
 jest.mock('../services/darksky', () => ({
   default: jest.fn().mockImplementation((lat, lon, units) => {
     expect(lat).toEqual(1);

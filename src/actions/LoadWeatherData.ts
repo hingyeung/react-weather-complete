@@ -1,10 +1,10 @@
-import setTemperature from "../action_factories/SetTemperature";
-import setTemperatureUnit from "../action_factories/SetTemperatureUnit";
-import setSummary from "../action_factories/SetSummary";
+import { setSummary, setTemperature, setTemperatureUnit } from "./index";
 import darkSkyService from '../services/darksky'
 import { Dispatch } from 'redux';
-import { TemperatureUnit, Units } from '../types';
+import { TemperatureUnit, Units } from '../types/index';
 
+// this action uses Thunk middleware (https://github.com/reduxjs/redux-thunk)
+// Return a function that accepts `dispatch`
 export default (lat: number, lon: number, units: Units = Units.SI) => (dispatch: Dispatch) => {
   darkSkyService(lat, lon)
     .then((resp: any) => {

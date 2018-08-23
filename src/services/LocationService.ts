@@ -1,10 +1,14 @@
 import Location from './Location';
+// import { setLocation } from '../actions';
 
 class LocationService {
   getLocation(): Promise<Location> {
     return new Promise<Location>((resolve, reject) => {
-      window.navigator.geolocation.getCurrentPosition(loc =>
-        resolve(new Location(loc.coords.latitude, loc.coords.longitude)))
+      window.navigator.geolocation.getCurrentPosition(loc => {
+        const location = new Location(loc.coords.latitude, loc.coords.longitude);
+        // setLocation(location);
+        resolve(location)
+      })
     })
   }
 }
