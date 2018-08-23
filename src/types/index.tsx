@@ -5,6 +5,11 @@ export enum TemperatureUnit {
   F = 'F'
 }
 
+export enum Units {
+  SI = 'si',
+  US = 'us'
+}
+
 export interface AppState {
   temperature: number;
   summary: string;

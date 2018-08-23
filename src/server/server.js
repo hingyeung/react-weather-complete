@@ -15,9 +15,9 @@ const DARK_SKY_API_KEY = process.env.DARK_SKY_API_KEY || 'set_your_dark_sky_api_
 let errorCode;
 
 server({port: 3001}, cors, [
-  get('/forecast/:lat/:lon', async ctx => {
+  get('/forecast/:lat/:lon/:units', async ctx => {
     let responseFromDS;
-    let promise = axios.get(`https://api.darksky.net/forecast/${DARK_SKY_API_KEY}/${ctx.params.lat},${ctx.params.lon}?units=si`);
+    let promise = axios.get(`https://api.darksky.net/forecast/${DARK_SKY_API_KEY}/${ctx.params.lat},${ctx.params.lon}?units=${ctx.params.units}`);
     promise
       .then((resp) => {
         responseFromDS = resp.data;
