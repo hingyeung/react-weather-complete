@@ -4,7 +4,10 @@ import { AppState } from '../../types';
 import { Dispatch } from 'redux';
 
 const mapStateToProps = (state: AppState) => {
-  return {temperature: state.temperature}
+  return {
+    temperature: state.temperature,
+    temperatureUnit: state.temperatureUnit
+  }
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({});

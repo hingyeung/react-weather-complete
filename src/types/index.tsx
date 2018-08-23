@@ -1,8 +1,14 @@
 import { Action } from 'redux';
 
+export enum TemperatureUnit {
+  C = 'C',
+  F = 'F'
+}
+
 export interface AppState {
   temperature: number;
   summary: string;
+  temperatureUnit: TemperatureUnit;
 }
 
 // Component Props
@@ -12,6 +18,7 @@ export interface IReactWeatherProps {
 
 export interface ITemperatureProps {
   temperature: number;
+  temperatureUnit: TemperatureUnit
 }
 
 export interface ISummaryProps {
@@ -21,6 +28,7 @@ export interface ISummaryProps {
 // Action Types
 export enum ActionType {
   SET_TEMPERATURE,
+  SET_TEMPERATURE_UNIT,
   SET_SUMMARY
 }
 
@@ -33,4 +41,9 @@ export interface SetTemperatureAction extends Action {
 export interface SetSummaryAction extends Action {
   type: ActionType.SET_SUMMARY,
   payload: string
+}
+
+export interface SetTemperatureUnitAction extends Action {
+  type: ActionType.SET_TEMPERATURE_UNIT,
+  payload: TemperatureUnit
 }
