@@ -1,7 +1,7 @@
-import { setSummary, setTemperature, setTemperatureUnit } from "./index";
+import { setSummary, setTemperature, setTemperatureUnit, setLastUpdated } from "./index";
 import darkSkyService from '../services/darksky'
 import { Dispatch } from 'redux';
-import { TemperatureUnit, Units } from '../types/index';
+import { TemperatureUnit, Units } from '../types';
 
 // this action uses Thunk middleware (https://github.com/reduxjs/redux-thunk)
 // Return a function that accepts `dispatch`
@@ -21,6 +21,9 @@ export default (lat: number, lon: number, units: Units = Units.SI) => (dispatch:
       dispatch(
         setSummary(resp.data.currently.summary)
       );
+      dispatch(
+        setLastUpdated(resp.data.currently.time)
+      )
     })
     .catch((error: any) => console.log(error));
 }

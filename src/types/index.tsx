@@ -16,6 +16,7 @@ export interface AppState {
   temperature: number;
   summary: string;
   temperatureUnit: TemperatureUnit;
+  lastUpdated: number;
 }
 
 // Component Props
@@ -38,12 +39,17 @@ export interface IAppProps {
   updateCurrentLocation: (location: Location) => void
 }
 
+export interface ILastUpdatedProps {
+  timestamp: number;
+}
+
 // Action Types
 export enum ActionType {
   SET_LOCATION,
   SET_TEMPERATURE,
   SET_TEMPERATURE_UNIT,
-  SET_SUMMARY
+  SET_SUMMARY,
+  SET_LAST_UPDATED
 }
 
 // Actions
@@ -65,4 +71,9 @@ export interface SetTemperatureUnitAction extends Action {
 export interface SetLocationAction extends Action {
   type: ActionType.SET_LOCATION,
   payload: Location
+}
+
+export interface SetLastUpdatedAction extends Action {
+  type: ActionType.SET_LAST_UPDATED,
+    payload: number
 }
