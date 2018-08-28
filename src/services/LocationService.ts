@@ -1,5 +1,4 @@
 import Location from './Location';
-// import { setLocation } from '../actions';
 
 class LocationService {
   getLocation(): Promise<Location> {

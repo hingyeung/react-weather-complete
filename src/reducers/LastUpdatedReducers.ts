@@ -4,7 +4,7 @@ import {TIMESTAMP_UNSET} from '../constants';
 type WeatherAction = ActionType<typeof weather>
 
 export default (state: number = TIMESTAMP_UNSET, action: WeatherAction) => {
-  console.log(action.type);
+  console.log('action:', action.type);
   switch (action.type) {
     case getType(weather.setLastUpdated):
       return action.payload;
