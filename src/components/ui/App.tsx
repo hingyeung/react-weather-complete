@@ -3,6 +3,11 @@ import { Component } from 'react';
 import ReactWeather from '../containers/ReactWeather';
 import { IAppProps } from '../../types';
 import LocationService from "../../services/LocationService";
+import styled from 'styled-components';
+
+const AppWrapper = styled.div`
+  display: flex;
+`;
 
 class App extends Component<IAppProps> {
 
@@ -13,13 +18,16 @@ class App extends Component<IAppProps> {
         (location) => {
           this.props.updateCurrentLocation(location);
         }
-      );
+      )
+      .catch((error) => console.log(error));
   };
 
 
   render() {
     return (
-      <ReactWeather/>
+      <AppWrapper>
+        <ReactWeather/>
+      </AppWrapper>
     );
   }
 }

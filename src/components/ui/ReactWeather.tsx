@@ -5,6 +5,12 @@ import { IReactWeatherProps } from '../../types';
 import Summary from '../containers/Summary';
 import Location from '../../services/Location';
 import LastUpdated from "../containers/LastUpdated";
+import styled from 'styled-components';
+
+const RWContainer = styled.div`
+  border: red solid 1px;
+  flex-basis: 30%;
+`;
 
 class ReactWeather extends Component<IReactWeatherProps> {
   constructor(props: IReactWeatherProps) {
@@ -16,13 +22,11 @@ class ReactWeather extends Component<IReactWeatherProps> {
       this.props.loadWeatherData(this.props.location);
     }
     return (
-      <div className="react-weather-main">
-        {/*{this.props.location.lat}*/}
-        {/*{this.props.location.lon}*/}
+      <RWContainer>
         <Temperature/>
         <LastUpdated/>
         <Summary/>
-      </div>
+      </RWContainer>
     )
   }
 }
