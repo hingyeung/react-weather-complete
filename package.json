@@ -11,7 +11,8 @@
     "react-scripts-ts": "2.17.0",
     "redux": "^4.0.0",
     "redux-thunk": "^2.3.0",
-    "server": "^1.0.18"
+    "server": "^1.0.18",
+    "typesafe-actions": "^2.0.4"
   },
   "scripts": {
     "start": "react-scripts-ts start",

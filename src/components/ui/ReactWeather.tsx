@@ -17,8 +17,8 @@ class ReactWeather extends Component<IReactWeatherProps> {
     }
     return (
       <div className="react-weather-main">
-        {this.props.location.lat}
-        {this.props.location.lon}
+        {/*{this.props.location.lat}*/}
+        {/*{this.props.location.lon}*/}
         <Temperature/>
         <LastUpdated/>
         <Summary/>

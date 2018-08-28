@@ -1,6 +1,6 @@
 import ReactWeather from "../ui/ReactWeather";
 import { connect } from 'react-redux';
-import { loadWeatherData } from "../../actions";
+import { loadWeatherDataWithThunk } from "../../actions/WeatherActions";
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { AppState } from '../../types';
@@ -10,7 +10,8 @@ import Location from '../../services/Location';
 const mapDispatchToProps = (dispatch: ThunkDispatch<AppState, void, AnyAction>, ownProps: any) => {
   return {
     loadWeatherData: (location: Location) => {
-      dispatch(loadWeatherData(location.lat, location.lon));
+      // dispatch(loadWeatherData.request(location));
+      dispatch(loadWeatherDataWithThunk(location))
     }
   }
 };
