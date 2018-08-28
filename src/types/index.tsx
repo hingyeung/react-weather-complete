@@ -49,38 +49,3 @@ export interface IAppProps {
 export interface ILastUpdatedProps {
   timestamp: number;
 }
-
-// // Action Types
-// export enum ActionType {
-//   SET_LOCATION,
-//   SET_TEMPERATURE,
-//   SET_TEMPERATURE_UNIT,
-//   SET_SUMMARY,
-//   SET_LAST_UPDATED
-// }
-//
-// // Actions
-// export interface SetTemperatureAction extends Action {
-//   type: ActionType.SET_TEMPERATURE,
-//   payload: number
-// }
-//
-// export interface SetSummaryAction extends Action {
-//   type: ActionType.SET_SUMMARY,
-//   payload: string
-// }
-//
-// export interface SetTemperatureUnitAction extends Action {
-//   type: ActionType.SET_TEMPERATURE_UNIT,
-//   payload: TemperatureUnit
-// }
-//
-// export interface SetLocationAction extends Action {
-//   type: ActionType.SET_LOCATION,
-//   payload: Location
-// }
-//
-// export interface SetLastUpdatedAction extends Action {
-//   type: ActionType.SET_LAST_UPDATED,
-//     payload: number
-// }
