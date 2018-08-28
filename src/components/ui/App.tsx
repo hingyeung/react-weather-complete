@@ -16,6 +16,7 @@ class App extends Component<IAppProps> {
     //       this.props.updateCurrentLocation(location);
     //     }
     //   );
+    // TODO: get real location
     this.props.updateCurrentLocation(new Location(-37.8860157,145.1560765));
   };
 

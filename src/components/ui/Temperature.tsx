@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ITemperatureProps } from '../../types';
 
-export default (props: ITemperatureProps) => {
+const Temperature: React.SFC<ITemperatureProps> = (props) => {
   return (
     <div className="temperature">
       Temperature: {props.temperature}
@@ -10,4 +10,6 @@ export default (props: ITemperatureProps) => {
       </span>
     </div>
   )
-}
+};
+
+export default Temperature;
