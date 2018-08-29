@@ -27,6 +27,12 @@ export const setTemperatureUnitToC = createAction(
     return () => resolve(TemperatureUnit.C)
   });
 
+export const toggleTemperatureUnit = createAction(
+  'weather/TOGGLE_TEMPERATURE_UNIT', resolve => {
+    return () => resolve()
+  }
+);
+
 // const loadWeatherData = createAsyncAction(
 //   'weather/requestWeatherData',
 //   'weather/requestWeatherDataSucceed',

@@ -7,7 +7,7 @@ import thunk from 'redux-thunk';
 const stateChangeLogger = (store: any) => (next: any) => (action: any) => {
   // before state change
   console.groupCollapsed('State change');
-  console.dir('before', store.getState());
+  console.dir(store.getState());
 
   // apply state change
   let result = next(action);

@@ -8,6 +8,7 @@ import temperature from './TemperatureReducers';
 import { combineReducers } from 'redux';
 import summary from './SummaryReducers';
 import lastUpdated from './LastUpdatedReducers';
+import temperatureUnit from './TemperatureUnitReducers';
 
 // export default combineReducers({
 //   temperature,
@@ -20,5 +21,6 @@ export default combineReducers({
   location,
   temperature,
   summary,
-  lastUpdated
+  lastUpdated,
+  temperatureUnit
 });

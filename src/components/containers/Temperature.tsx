@@ -2,18 +2,18 @@ import { connect } from 'react-redux';
 import Temperature from '../ui/Temperature';
 import { AppState } from '../../types';
 import { Dispatch } from 'redux';
-// import { loadWeatherData } from "../../actions";
+import {toggleTemperatureUnit} from '../../actions/WeatherActions'
 
 const mapStateToProps = (state: AppState) => {
   return {
     temperature: state.temperature,
     temperatureUnit: state.temperatureUnit
-  }
+  };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch, ownProps: any) => ({
   onToggleUnit: () => {
-    // dispatch(loadWeatherData(ownProps.location.lat, ownProps.location.lon));
+    dispatch(toggleTemperatureUnit());
   }
 });
 
