@@ -4,8 +4,8 @@ import { TIMESTAMP_UNSET } from "../../constants";
 import styled from 'styled-components';
 
 const LastUpdatedSC = styled.div`
-  flex-basis: 20%;
-  width: 60%;
+  text-align: center;
+  font-size: 12px;
 `;
 
 const LastUpdated: React.SFC<ILastUpdatedProps> = (props) => {

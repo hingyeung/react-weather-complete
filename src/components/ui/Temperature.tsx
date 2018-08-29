@@ -1,14 +1,14 @@
 import * as React from 'react';
-import { ITemperatureProps, TemperatureUnit } from '../../types';
+import { ITemperatureProps, TEMPERATURE_UNSET, TemperatureUnit } from '../../types';
 import styled from 'styled-components';
 
 const TemperatureSC = styled.div`
   flex-basis: 30%;
-  font-size: 72px;
 `;
 
 const UnitSC = styled.span`
   font-size: 32px;
+  cursor: pointer;
 `;
 
 const Temperature: React.SFC<ITemperatureProps> = (props) => {
@@ -18,14 +18,17 @@ const Temperature: React.SFC<ITemperatureProps> = (props) => {
 
   const roundToOneDecimalPlace = (value: number) => Math.round(value * 10)/10;
 
-  return (
-    <TemperatureSC>
-      {roundToOneDecimalPlace(temperatureForUnit(props.temperatureUnit, props.temperature))}
+  let temperatureElement = <TemperatureSC/>;
+  if (props.temperature !== TEMPERATURE_UNSET) {
+    temperatureElement = <TemperatureSC>
+      {roundToOneDecimalPlace(temperatureForUnit(props.temperatureUnit, props.temperature))}&#176;
       <UnitSC onClick={props.onToggleUnit}>
-        &#176;{props.temperatureUnit}
+        {props.temperatureUnit}
       </UnitSC>
-    </TemperatureSC>
-  )
+    </TemperatureSC>;
+  }
+
+  return temperatureElement;
 };
 
 export default Temperature;

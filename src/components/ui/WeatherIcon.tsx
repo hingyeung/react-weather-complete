@@ -4,11 +4,12 @@ import { IWeatherIconProps } from '../../types';
 
 const WeatherIconSC = styled.div`
   flex-basis: 30%;
+  height: 1.7em;
+  flex-basis: 140px;
 `;
 
 const IconImg = styled.img`
-  width: 100px;
-  height: 100px;
+  height: 100%;
 `;
 
 const WeatherIcon: React.SFC<IWeatherIconProps> = (props: IWeatherIconProps) => {

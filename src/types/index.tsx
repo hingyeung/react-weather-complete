@@ -18,6 +18,8 @@ export enum Units {
   US = 'us'
 }
 
+export const TEMPERATURE_UNSET = -99999;
+
 export interface AppState {
   location: Location;
   temperature: number;

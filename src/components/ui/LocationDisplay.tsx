@@ -2,9 +2,9 @@ import * as React from "react";
 import styled from 'styled-components';
 
 const LocationDisplaySC = styled.div`
-  flex-basis: 60%;
-  font-size: 48px;
+  font-size: 32px;
   height: 1em;
+  text-align: center
 `;
 
 const LocationDisplay: React.SFC = (props) => {

@@ -11,30 +11,18 @@ import '../../styles/html5reset-1.6.1.css';
 import WeatherIcon from '../containers/WeatherIcon';
 
 const RWContainer = styled.div`
-  border: red solid 1px;
   font-family: Arial, Helvetica, sans-serif;
   height: 280px;
-  display: flex;
-  flex-direction: column;
   width: 480px;
   padding: 20px;
 `;
 
-const Row1 = styled.div`
-  display: flex;
-  flex-basis: 60%;
-  align-items: center;
-`;
-
 const Row2 = styled.div`
   display: flex;
-  flex-basis: 30%;
-  align-items: flex-start;
+  align-items: center;
   margin-top: 20px;
-`;
-
-const Column = styled.div`
-  flex-basis: 70%;
+  font-size: 72px;
+  justify-content: center;
 `;
 
 class ReactWeather extends Component<IReactWeatherProps> {
@@ -48,17 +36,13 @@ class ReactWeather extends Component<IReactWeatherProps> {
     }
     return (
       <RWContainer>
-        <Row1>
-          <Column>
-            <LocationDisplay />
-            <LastUpdated/>
-          </Column>
-          <Temperature/>
-        </Row1>
+        <LocationDisplay />
+        <Summary/>
         <Row2>
-          <Summary/>
           <WeatherIcon/>
+          <Temperature/>
         </Row2>
+        <LastUpdated/>
       </RWContainer>
     )
   }
