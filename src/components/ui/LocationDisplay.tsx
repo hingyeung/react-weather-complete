@@ -3,9 +3,7 @@ import styled from 'styled-components';
 
 const LocationDisplaySC = styled.div`
   flex-basis: 60%;
-  background-color: lightblue;
   font-size: 48px;
-  text-align: center;
   height: 1em;
 `;
 

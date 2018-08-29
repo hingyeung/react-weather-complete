@@ -4,6 +4,10 @@
   "timezone": "America/Los_Angeles",
   "currently": {
     "temperature": 15,
-    "summary": "this is summary"
+    "summary": "this is summary",
+    "icon": "icon"
+  },
+  "hourly": {
+    "summary": "this is hourly summary"
   }
 }

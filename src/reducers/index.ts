@@ -9,6 +9,7 @@ import { combineReducers } from 'redux';
 import summary from './SummaryReducers';
 import lastUpdated from './LastUpdatedReducers';
 import temperatureUnit from './TemperatureUnitReducers';
+import icon from './IconReducers';
 
 // export default combineReducers({
 //   temperature,
@@ -22,5 +23,6 @@ export default combineReducers({
   temperature,
   summary,
   lastUpdated,
-  temperatureUnit
+  temperatureUnit,
+  icon
 });

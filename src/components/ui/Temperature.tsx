@@ -4,12 +4,11 @@ import styled from 'styled-components';
 
 const TemperatureSC = styled.div`
   flex-basis: 30%;
-  background-color: lightgreen;
   font-size: 72px;
 `;
 
 const UnitSC = styled.span`
-  font-size: 48px;
+  font-size: 32px;
 `;
 
 const Temperature: React.SFC<ITemperatureProps> = (props) => {
@@ -23,7 +22,7 @@ const Temperature: React.SFC<ITemperatureProps> = (props) => {
     <TemperatureSC>
       {roundToOneDecimalPlace(temperatureForUnit(props.temperatureUnit, props.temperature))}
       <UnitSC onClick={props.onToggleUnit}>
-        {props.temperatureUnit}
+        &#176;{props.temperatureUnit}
       </UnitSC>
     </TemperatureSC>
   )

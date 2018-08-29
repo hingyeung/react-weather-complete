@@ -13,6 +13,10 @@ export const setLastUpdated = createAction('weather/SET_LAST_UPDATED', resolve =
   return (lastUpdated: number) => resolve(lastUpdated)
 });
 
+export const setIcon = createAction('weather/SET_ICON', resolve => {
+  return (icon: string) => resolve(icon)
+});
+
 export const setSummary = createAction('weather/SET_SUMMARY', resolve => {
   return (summary: string) => resolve(summary)
 });
@@ -54,11 +58,14 @@ export const loadWeatherDataWithThunk = (location: Location, units: Units = Unit
           setTemperatureUnitToF()
         );
       dispatch(
-        setSummary(resp.data.currently.summary)
+        setSummary(resp.data.hourly.summary)
       );
       dispatch(
         setLastUpdated(resp.data.currently.time)
-      )
+      );
+      dispatch(
+        setIcon(resp.data.currently.icon)
+      );
     })
     .catch((error: any) => console.log(error));
 };

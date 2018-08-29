@@ -56,6 +56,11 @@ describe('LoadWeatherData action', () => {
 
   it('should set summary text', async () => {
     await weatherActions.loadWeatherDataWithThunk(TEST_LOC)(dispatch);
-    expect(weatherActions.setSummary).toHaveBeenCalledWith('this is summary');
+    expect(weatherActions.setSummary).toHaveBeenCalledWith('this is hourly summary');
+  });
+
+  it('should set icon', async () => {
+    await weatherActions.loadWeatherDataWithThunk(TEST_LOC)(dispatch);
+    expect(weatherActions.setIcon).toHaveBeenCalledWith('icon');
   });
 });

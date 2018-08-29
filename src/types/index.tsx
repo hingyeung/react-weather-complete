@@ -24,6 +24,7 @@ export interface AppState {
   summary: string;
   temperatureUnit: TemperatureUnit;
   lastUpdated: number;
+  icon: string;
 }
 
 // Component Props
@@ -48,4 +49,8 @@ export interface IAppProps {
 
 export interface ILastUpdatedProps {
   timestamp: number;
+}
+
+export interface IWeatherIconProps {
+  icon: string | null;
 }
