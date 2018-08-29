@@ -7,6 +7,7 @@ import styled from 'styled-components';
 
 const AppWrapper = styled.div`
   display: flex;
+  justify-content: center;
 `;
 
 class App extends Component<IAppProps> {
