@@ -4,10 +4,12 @@ const {error} = server.router;
 const {status} = server.reply;
 const axios = require('axios');
 const {header} = server.reply;
+const cachePeriod = process.argv[2];
 
 const cors = [
   ctx => header("Access-Control-Allow-Origin", "*"),
   ctx => header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept"),
+  ctx => cachePeriod ? header("Cache-Control", `max-age=${cachePeriod}`) : null,
   ctx => ctx.method.toLowerCase() === 'options' ? 200 : false
 ];
 
