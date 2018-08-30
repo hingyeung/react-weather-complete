@@ -27,7 +27,7 @@ const simpleGETHandler = (requestUrlBuilderFn) => {
         response = resp.data;
       })
       .catch((error) => {
-        errorCode = error.response.status;
+        errorCode = error.response ? error.response.status : 500;
       });
     await promise;
     return response;
@@ -40,5 +40,5 @@ server({port: 3001}, cors, [
   get('/reverse-geocode/:lat/:lon',
     // simpleGETHandler(ctx => `https://maps.googleapis.com/maps/api/geocode/json?key=${GOOGLE_MAP_API_KEY}&latlng=${ctx.params.lat},${ctx.params.lon}`)),
     simpleGETHandler(ctx => `https://maps.googleapis.com/maps/api/geocode/json?latlng=${ctx.params.lat},${ctx.params.lon}`)),
-  error(ctx => status(500).send(ctx.error.message))
+  error(ctx => status(errorCode).send(ctx.error.message))
 ]);

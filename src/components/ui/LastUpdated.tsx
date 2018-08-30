@@ -8,12 +8,16 @@ const LastUpdatedSC = styled.div`
   font-size: 12px;
 `;
 
+const addLeadingZeros = (v: string): string => v.length < 2 ? '0' + v : v;
+
 const LastUpdated: React.SFC<ILastUpdatedProps> = (props) => {
   const displayLastUpdatedDate = new Date(props.timestamp * 1000);
+  const hh = addLeadingZeros('' + displayLastUpdatedDate.getHours());
+  const mm = addLeadingZeros('' + displayLastUpdatedDate.getMinutes());
   return (
     <LastUpdatedSC>
       {props.timestamp !== TIMESTAMP_UNSET ?
-      `Updated at ${displayLastUpdatedDate.getHours()}:${displayLastUpdatedDate.getMinutes()}`
+      `Updated at ${hh}:${mm}`
        : '' }
     </LastUpdatedSC>
   )
