@@ -10,6 +10,7 @@ import summary from './SummaryReducers';
 import lastUpdated from './LastUpdatedReducers';
 import temperatureUnit from './TemperatureUnitReducers';
 import icon from './IconReducers';
+import showLocationSelector from './ShowLocationSelectorReducers'
 
 // export default combineReducers({
 //   temperature,
@@ -24,5 +25,6 @@ export default combineReducers({
   summary,
   lastUpdated,
   temperatureUnit,
-  icon
+  icon,
+  showLocationSelector
 });

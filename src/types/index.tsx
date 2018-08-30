@@ -27,12 +27,14 @@ export interface AppState {
   temperatureUnit: TemperatureUnit;
   lastUpdated: number;
   icon: string;
+  showLocationSelector: boolean;
 }
 
 // Component Props
 export interface IReactWeatherProps {
   location: Location;
   loadWeatherData: (location: Location) => void;
+  showLocationSelector: boolean;
 }
 
 export interface ITemperatureProps {
@@ -59,4 +61,10 @@ export interface IWeatherIconProps {
 
 export interface ILocationDisplayProps {
   name: string;
+  onClick: () => void;
+}
+
+export interface ILocationSelectorProps {
+  defaultPosition: {lat: number, lng: number};
+  onLocationChange: (selectedLocation: any) => void
 }

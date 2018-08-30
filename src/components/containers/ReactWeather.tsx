@@ -16,10 +16,9 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<AppState, void, AnyAction>, 
   }
 };
 
-const mapStateToProps = (state: AppState) => {
-  return {
-    location: state.location
-  }
-};
+const mapStateToProps = (state: AppState) => ({
+  location: state.location,
+  showLocationSelector: state.showLocationSelector
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(ReactWeather)

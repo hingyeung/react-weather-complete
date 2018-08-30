@@ -8,7 +8,6 @@ import { AppState } from "../../types";
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<AppState, void, AnyAction>) => ({
   updateCurrentLocation: (location: Location) => {
-    // dispatch(setLocation(location));
     dispatch(setLocationWithThunk(location));
   }
 });
