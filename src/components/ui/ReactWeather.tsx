@@ -3,7 +3,6 @@ import { Component } from 'react';
 import Temperature from '../containers/Temperature';
 import { IReactWeatherProps } from '../../types';
 import Summary from '../containers/Summary';
-import Location from '../../services/Location';
 import LastUpdated from "../containers/LastUpdated";
 import styled from 'styled-components';
 import LocationDisplay from "../containers/LocationDisplay";
@@ -32,10 +31,6 @@ class ReactWeather extends Component<IReactWeatherProps> {
   }
 
   render() {
-    if (this.props.location !== Location.UNSET) {
-      this.props.loadWeatherData(this.props.location);
-    }
-
     let locationSelector;
     if (this.props.showLocationSelector) {
       locationSelector = <LocationSelector/>;

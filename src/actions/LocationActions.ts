@@ -1,9 +1,12 @@
 import { createAction } from 'typesafe-actions';
 import Location from '../services/Location';
-import { Dispatch } from "redux";
+import { AnyAction } from "redux";
 import GeocodeService from '../services/GeocodeService';
 // import * as googlemaps from 'googlemaps';
 import GeocoderAddressComponent = google.maps.GeocoderAddressComponent;
+import { loadWeatherDataWithThunk } from "./WeatherActions";
+import { ThunkDispatch } from "redux-thunk";
+import { AppState } from "../types";
 
 export const setLocation = createAction('location/SET_LOCATION',resolve => {
   return (location: Location) => resolve(location);
@@ -13,10 +16,13 @@ export const setLocationDisplay = createAction('location/SET_LOCATION_DISPLAY', 
   return (locationDisplay: string) => resolve(locationDisplay);
 });
 
-export const setLocationWithThunk = (location: Location) => (dispatch: Dispatch) => {
+export const setLocationWithThunk = (location: Location) => (dispatch: ThunkDispatch<AppState, void, AnyAction>) => {
   const geocodeService = new GeocodeService();
   dispatch(
     setLocation(location)
+  );
+  dispatch(
+    loadWeatherDataWithThunk(location)
   );
 
   const findLocalityName = (addressComponents: GeocoderAddressComponent[]) => {
