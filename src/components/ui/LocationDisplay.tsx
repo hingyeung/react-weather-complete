@@ -7,6 +7,8 @@ const LocationDisplaySC = styled.div`
   height: 1em;
   text-align: center;
   cursor: pointer;
+  color: steelblue;
+  border-bottom: 1px solid steelblue;
 `;
 
 const LocationDisplay: React.SFC<ILocationDisplayProps> = (props) => {

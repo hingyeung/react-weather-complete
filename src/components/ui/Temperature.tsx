@@ -3,12 +3,13 @@ import { ITemperatureProps, TEMPERATURE_UNSET, TemperatureUnit } from '../../typ
 import styled from 'styled-components';
 
 const TemperatureSC = styled.div`
-  flex-basis: 30%;
 `;
 
 const UnitSC = styled.span`
   font-size: 32px;
   cursor: pointer;
+  color: steelblue;
+  border-bottom: 1px solid steelblue;
 `;
 
 const Temperature: React.SFC<ITemperatureProps> = (props) => {

@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { IWeatherIconProps } from '../../types';
 
 const WeatherIconSC = styled.div`
-  flex-basis: 30%;
   height: 1.7em;
   flex-basis: 140px;
 `;

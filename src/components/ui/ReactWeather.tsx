@@ -17,6 +17,11 @@ const RWContainer = styled.div`
   padding: 20px;
 `;
 
+const LocationDisplayContainerSC = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 const Row2 = styled.div`
   display: flex;
   align-items: center;
@@ -38,7 +43,9 @@ class ReactWeather extends Component<IReactWeatherProps> {
 
     return (
       <RWContainer>
-        <LocationDisplay />
+        <LocationDisplayContainerSC>
+          <LocationDisplay />
+        </LocationDisplayContainerSC>
         {locationSelector}
         <Summary/>
         <Row2>
