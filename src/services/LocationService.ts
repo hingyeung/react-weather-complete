@@ -5,7 +5,6 @@ class LocationService {
     return new Promise<Location>((resolve, reject) => {
       window.navigator.geolocation.getCurrentPosition(loc => {
         const location = new Location(loc.coords.latitude, loc.coords.longitude);
-        // setLocation(location);
         resolve(location)
       })
     })

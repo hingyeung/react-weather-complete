@@ -6,7 +6,7 @@ import Summary from '../containers/Summary';
 import Location from '../../services/Location';
 import LastUpdated from "../containers/LastUpdated";
 import styled from 'styled-components';
-import LocationDisplay from "./LocationDisplay";
+import LocationDisplay from "../containers/LocationDisplay";
 import '../../styles/html5reset-1.6.1.css';
 import WeatherIcon from '../containers/WeatherIcon';
 

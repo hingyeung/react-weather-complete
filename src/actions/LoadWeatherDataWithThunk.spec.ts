@@ -20,7 +20,7 @@ jest.mock('../services/darksky', () => ({
   })
 }));
 
-const TEST_LOC = new Location(1,2);
+const TEST_LOC = new Location(1,2, 'wherever');
 
 describe('LoadWeatherData action', () => {
   let dispatch: Dispatch;

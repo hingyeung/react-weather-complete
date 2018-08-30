@@ -56,3 +56,7 @@ export interface ILastUpdatedProps {
 export interface IWeatherIconProps {
   icon: string | null;
 }
+
+export interface ILocationDisplayProps {
+  name: string;
+}

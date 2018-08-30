@@ -1,5 +1,6 @@
 import * as React from "react";
 import styled from 'styled-components';
+import { ILocationDisplayProps } from "../../types";
 
 const LocationDisplaySC = styled.div`
   font-size: 32px;
@@ -7,9 +8,9 @@ const LocationDisplaySC = styled.div`
   text-align: center
 `;
 
-const LocationDisplay: React.SFC = (props) => {
+const LocationDisplay: React.SFC<ILocationDisplayProps> = (props) => {
   return (
-    <LocationDisplaySC>Melbourne, Vic</LocationDisplaySC>
+    <LocationDisplaySC>{props.name}</LocationDisplaySC>
   )
 };
 

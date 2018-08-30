@@ -1,14 +1,15 @@
 import { connect } from 'react-redux';
 import App from '../ui/App';
-import { Dispatch } from 'redux';
-// import {setLocation} from '../../actions'
+import { AnyAction } from 'redux';
 import Location from '../../services/Location';
-import { setLocation } from '../../actions/LocationActions';
+import { setLocationWithThunk } from '../../actions/LocationActions';
+import { ThunkDispatch } from "redux-thunk";
+import { AppState } from "../../types";
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
+const mapDispatchToProps = (dispatch: ThunkDispatch<AppState, void, AnyAction>) => ({
   updateCurrentLocation: (location: Location) => {
-    // dispatch(setLocation(location))
-    dispatch(setLocation(location));
+    // dispatch(setLocation(location));
+    dispatch(setLocationWithThunk(location));
   }
 });
 
