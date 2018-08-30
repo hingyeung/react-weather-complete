@@ -2,7 +2,6 @@ import { createAction } from 'typesafe-actions';
 import Location from '../services/Location';
 import { AnyAction } from "redux";
 import GeocodeService from '../services/GeocodeService';
-// import * as googlemaps from 'googlemaps';
 import GeocoderAddressComponent = google.maps.GeocoderAddressComponent;
 import { loadWeatherDataWithThunk } from "./WeatherActions";
 import { ThunkDispatch } from "redux-thunk";
