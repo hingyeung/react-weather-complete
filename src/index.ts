@@ -5,8 +5,22 @@ const getKey = () => {
   return process.env.DARK_SKY_API_KEY;
 };
 
+const getCorsDomain = () => {
+  return process.env.CORS_DOMAIN;
+};
+
 const buildResult = (statusCode: number, body: any): APIGatewayProxyResult => {
-  return {statusCode, body};
+  let cors = {};
+  if (getCorsDomain()) {
+    cors = {
+      "Access-Control-Allow-Origin": getCorsDomain(),
+      "Access-Control-Allow-Methods": "GET, OPTIONS"
+    };
+  }
+  return {statusCode, body, headers: {
+      ...cors,
+      "Content-Type": "application/json"
+  }};
 };
 
 const getWeather = async (lat: number, lon: number, units: string) => {

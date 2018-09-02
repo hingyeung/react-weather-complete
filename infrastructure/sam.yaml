@@ -4,6 +4,16 @@ Description: Weather API Server
 Parameters:
   DarkSkyAPIKey:
     Type: String
+  CorsDomain:
+    Type: String
+Globals:
+  Api:
+    MethodSettings:
+      - ResourcePath: "/*"
+        HttpMethod: "*"
+        ThrottlingBurstLimit: 5
+        ThrottlingRateLimit: 10
+
 Resources:
   WeatherFunction:
     Type: AWS::Serverless::Function
@@ -15,10 +25,11 @@ Resources:
       Timeout: 30 # seconds, 300 max
       Environment:
         Variables:
+          CORS_DOMAIN: !Ref CorsDomain
           DARK_SKY_API_KEY: !Ref DarkSkyAPIKey
       Events:
         WeatherApi:
           Type: Api
           Properties:
-            Path: /{proxy+}
+            Path: /weather
             Method: GET
