@@ -1,8 +1,11 @@
 {
   "name": "weather-api-server",
   "version": "1.0.0",
-  "description": "",
+  "description": "A simple server that proxies requests to Dark Sky API.",
   "main": "index.js",
+  "engines": {
+    "node": ">=8.10 <8.11"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "check": "gts check",
@@ -14,7 +17,7 @@
     "posttest": "npm run check",
     "cf-deploy-stack": "infrastructure/scripts/cf_deploy_stack.sh"
   },
-  "author": "Samuel Li",
+  "author": "Samuel Li <samli@samuelli.net>",
   "license": "ISC",
   "devDependencies": {
     "@types/aws-lambda": "^8.10.11",
