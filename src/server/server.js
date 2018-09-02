@@ -35,10 +35,9 @@ const simpleGETHandler = (requestUrlBuilderFn) => {
 };
 
 server({port: 3001}, cors, [
-  get('/forecast/:lat/:lon/:units',
-    simpleGETHandler(ctx => `https://api.darksky.net/forecast/${DARK_SKY_API_KEY}/${ctx.params.lat},${ctx.params.lon}?units=${ctx.params.units}`)),
-  get('/reverse-geocode/:lat/:lon',
-    // simpleGETHandler(ctx => `https://maps.googleapis.com/maps/api/geocode/json?key=${GOOGLE_MAP_API_KEY}&latlng=${ctx.params.lat},${ctx.params.lon}`)),
-    simpleGETHandler(ctx => `https://maps.googleapis.com/maps/api/geocode/json?latlng=${ctx.params.lat},${ctx.params.lon}`)),
+  get('/weather',
+    simpleGETHandler(ctx => `https://api.darksky.net/forecast/${DARK_SKY_API_KEY}/${ctx.query.lat},${ctx.query.lon}?units=${ctx.query.units}`)),
+  // get('/reverse-geocode/:lat/:lon',
+  //   simpleGETHandler(ctx => `https://maps.googleapis.com/maps/api/geocode/json?latlng=${ctx.params.lat},${ctx.params.lon}`)),
   error(ctx => status(errorCode).send(ctx.error.message))
 ]);
