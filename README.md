@@ -12,7 +12,7 @@ A simple server that proxies requests to [Dark Sky](https://darksky.net/dev/docs
 # Package
 `> infrastructure/scripts/package.sh`
 
-# Testing localling with SAM local
+# Testing localling with SAM local (must run after the Package step)
 ```
 > DARK_SKY_API_KEY=${DARK_SKY_API_KEY} sam local invoke \
     "WeatherFunction" --template infrastructure/sam.yaml \
