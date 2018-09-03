@@ -8,6 +8,13 @@ A simple server that proxies requests to [Dark Sky](https://darksky.net/dev/docs
 # Watch and Compile Typescript
 `> npx tsc -w`
 
+# Testing localling with SAM local
+```
+> DARK_SKY_API_KEY=${DARK_SKY_API_KEY} sam local invoke \
+    "WeatherFunction" --template infrastructure/sam.yaml \
+     -e test/data/events/apigateway-event.json 
+```
+
 # Package & Upload
 ```
 > infrastructure/scripts/package.sh && \
