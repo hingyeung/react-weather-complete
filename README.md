@@ -3,10 +3,14 @@ A simple server that proxies requests to [Dark Sky](https://darksky.net/dev/docs
 
 # Dev Setup
 `> mkvirtualenv weather-api-server`  
-`> pip install aws-sam-cli`
+`> pip install aws-sam-cli`  
+`> npm use`
 
 # Watch and Compile Typescript
 `> npx tsc -w`
+
+# Package
+`> infrastructure/scripts/package.sh`
 
 # Testing localling with SAM local
 ```
