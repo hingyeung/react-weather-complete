@@ -23,6 +23,7 @@ export const TEMPERATURE_UNSET = -99999;
 export interface AppState {
   location: Location;
   temperature: number;
+  apparentTemperature: number;
   summary: string;
   temperatureUnit: TemperatureUnit;
   lastUpdated: number;
@@ -39,6 +40,7 @@ export interface IReactWeatherProps {
 
 export interface ITemperatureProps {
   temperature: number;
+  apparentTemperature: number;
   temperatureUnit: TemperatureUnit;
   onToggleUnit: () => void;
 }

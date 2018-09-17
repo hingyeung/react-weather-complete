@@ -9,6 +9,10 @@ export const setTemperature = createAction('weather/SET_TEMPERATURE', resolve =>
   return (temperature: number) => resolve(temperature);
 });
 
+export const setApparentTemperature = createAction('weather/SET_APPARENT_TEMPERATURE', resolve => {
+  return (apparentTemperature: number) => resolve(apparentTemperature);
+});
+
 export const setLastUpdated = createAction('weather/SET_LAST_UPDATED', resolve => {
   return (lastUpdated: number) => resolve(lastUpdated)
 });
@@ -37,11 +41,6 @@ export const toggleTemperatureUnit = createAction(
   }
 );
 
-// const loadWeatherData = createAsyncAction(
-//   'weather/requestWeatherData',
-//   'weather/requestWeatherDataSucceed',
-//   'weather/requestWeatherDataFailed')<Location, DarkSkyWeatherData, Error>();
-
 export const loadWeatherDataWithThunk = (location: Location, units: Units = Units.SI) => (dispatch: Dispatch) => {
   darkSkyService(location.lat, location.lon)
     .then((resp: any) => {
@@ -49,6 +48,9 @@ export const loadWeatherDataWithThunk = (location: Location, units: Units = Unit
         // invoking setTemperature function via exports to make unit test easier
         // https://github.com/facebook/jest/issues/936#issuecomment-214939935
         setTemperature(parseFloat(resp.data.currently.temperature))
+      );
+      dispatch(
+        setApparentTemperature(parseFloat(resp.data.currently.apparentTemperature))
       );
       units === Units.SI ?
         dispatch(

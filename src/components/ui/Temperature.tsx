@@ -5,8 +5,13 @@ import styled from 'styled-components';
 const TemperatureSC = styled.div`
 `;
 
+const ApparentTemperatureSC = styled.div`
+  font-size: 33%;
+  filter: opacity(40%);
+`;
+
 const UnitSC = styled.span`
-  font-size: 32px;
+  font-size: 50%;
   cursor: pointer;
   color: steelblue;
   border-bottom: 1px solid steelblue;
@@ -21,12 +26,18 @@ const Temperature: React.SFC<ITemperatureProps> = (props) => {
 
   let temperatureElement = <TemperatureSC/>;
   if (props.temperature !== TEMPERATURE_UNSET) {
-    temperatureElement = <TemperatureSC>
-      {roundToOneDecimalPlace(temperatureForUnit(props.temperatureUnit, props.temperature))}&#176;
-      <UnitSC onClick={props.onToggleUnit}>
-        {props.temperatureUnit}
-      </UnitSC>
-    </TemperatureSC>;
+    temperatureElement =
+      <div>
+        <TemperatureSC>
+          {roundToOneDecimalPlace(temperatureForUnit(props.temperatureUnit, props.temperature))}&#176;
+          <UnitSC onClick={props.onToggleUnit}>
+            {props.temperatureUnit}
+          </UnitSC>
+        </TemperatureSC>
+        <ApparentTemperatureSC>
+          feels like {roundToOneDecimalPlace(temperatureForUnit(props.temperatureUnit, props.apparentTemperature))}&#176;
+        </ApparentTemperatureSC>
+      </div>;
   }
 
   return temperatureElement;

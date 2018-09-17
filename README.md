@@ -5,6 +5,14 @@ A demo/practice [React](https://reactjs.org/) app created to learn more about ma
 
 See the live demo [here](https://weather.demo.samuelli.net).
 
+# Local Development
+## start the app
+`> npm run start`
+## start local api server
+`> DARK_SKY_API_KEY=123456789 npm run start-local-api-server`
+## run test
+`> npm run test`
+
 #Notes
 Q: What do I do if I see this error message during development: `Error: watch <some_path_to_file> ENOSPC`?
 1. Add the following line to  /etc/sysctl.conf  

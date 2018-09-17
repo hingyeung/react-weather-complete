@@ -6,9 +6,10 @@ const weatherActions = require('./WeatherActions');
 weatherActions.setSummary = jest.fn();
 weatherActions.setLastUpdated = jest.fn();
 weatherActions.setTemperature = jest.fn();
+weatherActions.setApparentTemperature = jest.fn();
 weatherActions.setTemperatureUnitToC = jest.fn();
 weatherActions.setTemperatureUnitToF = jest.fn();
-weatherActions.setDummy = jest.fn();
+weatherActions.setIcon = jest.fn();
 
 jest.mock('../services/darksky', () => ({
   default: jest.fn().mockImplementation((lat, lon, units) => {
@@ -34,6 +35,12 @@ describe('LoadWeatherData action', () => {
     await weatherActions.loadWeatherDataWithThunk(TEST_LOC)(dispatch);
 
     expect(weatherActions.setTemperature).toHaveBeenCalledWith(15);
+  });
+
+  it('should set apparent temperature', async () => {
+    await weatherActions.loadWeatherDataWithThunk(TEST_LOC)(dispatch);
+
+    expect(weatherActions.setApparentTemperature).toHaveBeenCalledWith(10);
   });
 
   it('should set default temperature unit', async () => {

@@ -21,6 +21,7 @@
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
+    "start-local-api-server": "node src/server/server.js",
     "eject": "react-scripts-ts eject"
   },
   "devDependencies": {

@@ -6,6 +6,7 @@ import styled from 'styled-components';
 const LastUpdatedSC = styled.div`
   text-align: center;
   font-size: 12px;
+  padding-top: 20px;
 `;
 
 const addLeadingZeros = (v: string): string => v.length < 2 ? '0' + v : v;
