@@ -11,18 +11,14 @@ jest.mock('../services/GeocodeService');
 // @ts-ignore
 GeocodeService.mockImplementation(() => ({
   reverseGeocode: jest.fn().mockImplementation(() => {
-    const geocoderResult = {
-      results: [{
-        address_components: [{
-          types: ['locality'],
-          long_name: 'locality_long_name'
-        }]}
-      ],
-      status: 'OK'
-    };
-    return Promise.resolve({
-      data: geocoderResult
-    });
+    const geocoderResult = [{
+      address_components: [{
+        types: ['locality'],
+        long_name: 'locality_long_name'
+      }]}
+    ];
+
+    return Promise.resolve(geocoderResult);
   })
 }));
 

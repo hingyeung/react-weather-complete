@@ -70,3 +70,9 @@ export interface ILocationSelectorProps {
   defaultPosition: {lat: number, lng: number};
   onLocationChange: (selectedLocation: any) => void
 }
+
+declare global {
+  interface Window {
+    google: any;
+  }
+}
