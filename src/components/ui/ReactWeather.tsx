@@ -53,7 +53,7 @@ class ReactWeather extends Component<IReactWeatherProps> {
     return (
       <RWContainer>
         <RWHeading>
-          Get your local weather observation with React/Redux
+          Getting your local weather observation with React/Redux
         </RWHeading>
         <LocationDisplayContainerSC>
           <LocationDisplay />

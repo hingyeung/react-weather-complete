@@ -6,6 +6,7 @@ const SummarySC = styled.div`
   text-align: center;
   margin-top: 20px;
   min-height: 1em;
+  line-height: 1.1rem;
 `;
 
 const Summary: React.SFC<ISummaryProps> = (props) => (

@@ -6,7 +6,8 @@ import styled from 'styled-components';
 const LastUpdatedSC = styled.div`
   text-align: center;
   font-size: 12px;
-  padding-top: 20px;
+  margin-top: 10px;
+  filter: opacity(40%);
 `;
 
 const addLeadingZeros = (v: string): string => v.length < 2 ? '0' + v : v;
