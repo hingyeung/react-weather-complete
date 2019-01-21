@@ -11,23 +11,31 @@ const AuthorSC = styled.div`
 `;
 
 const SocialIcon = styled.img`
-  width: 25px;
-  height: 25px;
+  width: 18px;
+  height: 18px;
 `;
 
 const Link = styled.a`
   margin: 5px;
 `;
 
+const Name = styled.div`
+  display: inline-block;
+  margin-bottom: 10px;
+`;
+
 const Author: SFC = (props) => {
   return (
     <AuthorSC>
-      <Link href="mailto:samli@samuelli.net">
-        <SocialIcon src={emailIcon}/>
-      </Link>
-      <Link href="https://github.com/hingyeung/react-weather">
-        <SocialIcon src={githubIcon}/>
-      </Link>
+      <Name>&#169; Samuel Li</Name>
+      <div>
+        <Link href="mailto:samli@samuelli.net">
+          <SocialIcon src={emailIcon}/>
+        </Link>
+        <Link href="https://github.com/hingyeung/react-weather">
+          <SocialIcon src={githubIcon}/>
+        </Link>
+      </div>
     </AuthorSC>
   )
 };

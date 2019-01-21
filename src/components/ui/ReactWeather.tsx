@@ -31,6 +31,14 @@ const Row2 = styled.div`
   justify-content: center;
 `;
 
+const RWHeading = styled.h1`
+  font-size: 10px;
+  font-weight: normal;
+  text-align: center;
+  margin-bottom: 25px;
+  color: grey;
+`;
+
 class ReactWeather extends Component<IReactWeatherProps> {
   constructor(props: IReactWeatherProps) {
     super(props);
@@ -44,6 +52,9 @@ class ReactWeather extends Component<IReactWeatherProps> {
 
     return (
       <RWContainer>
+        <RWHeading>
+          Get your local weather observation with React/Redux
+        </RWHeading>
         <LocationDisplayContainerSC>
           <LocationDisplay />
         </LocationDisplayContainerSC>
