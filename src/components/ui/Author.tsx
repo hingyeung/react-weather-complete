@@ -1,6 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { SFC } from 'react';
+import githubIcon from '../../assets/github.svg'
+import emailIcon from '../../assets/mail.svg'
 
 const AuthorSC = styled.div`
   text-align: center;
@@ -8,13 +10,25 @@ const AuthorSC = styled.div`
   margin-top: 50px;
 `;
 
-const EmailLink = styled.a`
-  color: steelblue;
+const SocialIcon = styled.img`
+  width: 25px;
+  height: 25px;
+`;
+
+const Link = styled.a`
+  margin: 5px;
 `;
 
 const Author: SFC = (props) => {
   return (
-    <AuthorSC><EmailLink href="mailto:samli@samuelli.net">Samuel Li</EmailLink></AuthorSC>
+    <AuthorSC>
+      <Link href="mailto:samli@samuelli.net">
+        <SocialIcon src={emailIcon}/>
+      </Link>
+      <Link href="https://github.com/hingyeung/react-weather">
+        <SocialIcon src={githubIcon}/>
+      </Link>
+    </AuthorSC>
   )
 };
 
