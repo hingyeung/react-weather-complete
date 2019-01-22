@@ -32,11 +32,11 @@ const Row2 = styled.div`
 `;
 
 const RWHeading = styled.h1`
-  font-size: 10px;
+  font-size: 12px;
   font-weight: normal;
   text-align: center;
   margin-bottom: 25px;
-  color: grey;
+  filter: opacity(50%);
 `;
 
 class ReactWeather extends Component<IReactWeatherProps> {

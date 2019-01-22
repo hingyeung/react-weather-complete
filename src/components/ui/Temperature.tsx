@@ -7,7 +7,7 @@ const TemperatureSC = styled.div`
 
 const ApparentTemperatureSC = styled.div`
   font-size: 33%;
-  filter: opacity(40%);
+  filter: opacity(50%);
 `;
 
 const UnitSC = styled.span`

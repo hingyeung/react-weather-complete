@@ -4,7 +4,6 @@ import { IWeatherIconProps } from '../../types';
 
 const WeatherIconSC = styled.div`
   height: 1.7em;
-  flex-basis: 140px;
 `;
 
 const IconImg = styled.img`
@@ -14,7 +13,7 @@ const IconImg = styled.img`
 const WeatherIcon: React.SFC<IWeatherIconProps> = (props: IWeatherIconProps) => {
   let iconImg;
   if (props.icon) {
-    iconImg = <IconImg src={`https://darksky.net/images/weather-icons/${props.icon}.png`}/>;
+    iconImg = <IconImg alt={props.icon} src={`https://darksky.net/images/weather-icons/${props.icon}.png`}/>;
   }
   return (
     <WeatherIconSC>
