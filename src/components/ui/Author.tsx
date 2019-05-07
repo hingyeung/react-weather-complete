@@ -16,10 +16,10 @@ const SocialIcon = styled.img`
 `;
 
 const IconLink: SFC<{iconSrc: string;} & React.HTMLProps<HTMLAnchorElement & HTMLImageElement>> = (props) => {
-  const { className, href } = props;
+  const { className, href, target, alt } = props;
   return (
-    <a {...{className, href}}>
-      <SocialIcon alt="email icon" src={props.iconSrc} />
+    <a {...{className, href, target}}>
+      <SocialIcon alt={alt} src={props.iconSrc} />
     </a>
   )
 };
@@ -39,7 +39,7 @@ const Author: SFC = (props) => {
       <Name>&#169; Samuel Li</Name>
       <div>
         <StyledIconLink href="mailto:samli@samuelli.net" alt="email icon" iconSrc={emailIcon}/>
-        <StyledIconLink href="https://github.com/hingyeung/react-weather" alt="github icon" iconSrc={githubIcon}/>
+        <StyledIconLink href="https://github.com/hingyeung/react-weather" alt="github icon" target="_blank" iconSrc={githubIcon}/>
       </div>
     </AuthorSC>
   )
