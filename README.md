@@ -1,5 +1,5 @@
 # React Weather
-A demo/practice [React](https://reactjs.org/) app created to learn more about managing state with [Redux](https://redux.js.org/). It shows the weather information of the an user-selected location. It uses weather data from [Dark Sky API](https://darksky.net/dev).
+A demo/practice [React](https://reactjs.org/) app created to learn more about managing state with [Redux](https://redux.js.org/). It shows the weather information of the an user-selected location. It fetches weather data from [Dark Sky API](https://darksky.net/dev) via [weather-api-server](https://github.com/hingyeung/weather-api-server).
 
 ![alt text](images/demo.png)
 
