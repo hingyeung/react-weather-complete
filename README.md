@@ -1,4 +1,4 @@
-#React Weather
+# React Weather
 A demo/practice [React](https://reactjs.org/) app created to learn more about managing state with [Redux](https://redux.js.org/).
 
 ![alt text](images/demo.png)
