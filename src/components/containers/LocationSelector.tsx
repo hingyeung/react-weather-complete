@@ -6,11 +6,11 @@ import Location from "../../services/Location";
 import { ThunkDispatch } from "redux-thunk";
 import { AnyAction } from "redux";
 
-const DEFAULT_POSITION = {lat: -37.888071599999996, lng: 145.1664597};
+export const DEFAULT_POSITION = {lat: -37.888071599999996, lng: 145.1664597};
 
 const mapStateToProps = (state: AppState) => ({
   // defaultPosition: {lat: state.location.lat, lng: state.location.lon}
-  defaultPosition: DEFAULT_POSITION
+  defaultPosition: state.location ? {lat: state.location.lat, lng: state.location.lon} : DEFAULT_POSITION
 });
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<AppState, void, AnyAction>) => ({
