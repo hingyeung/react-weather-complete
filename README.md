@@ -1,5 +1,5 @@
-#React Weather
-A demo/practice [React](https://reactjs.org/) app created to learn more about managing state with [Redux](https://redux.js.org/).
+# React Weather
+A demo/practice [React](https://reactjs.org/) app created to learn more about managing state with [Redux](https://redux.js.org/). It shows the weather information of a user-selected location. It fetches weather data from [Dark Sky API](https://darksky.net/dev) via [weather-api-server](https://github.com/hingyeung/weather-api-server).
 
 ![alt text](images/demo.png)
 
@@ -13,7 +13,7 @@ See the live demo [here](https://weather.demo.samuelli.net).
 ## run test
 `> npm run test`
 
-#Notes
+# Notes
 Q: What do I do if I see this error message during development: `Error: watch <some_path_to_file> ENOSPC`?
 1. Add the following line to  /etc/sysctl.conf  
 `fs.inotify.max_user_watches=524288`  
