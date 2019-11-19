@@ -3,7 +3,7 @@ A simple server that proxies requests to [Dark Sky](https://darksky.net/dev/docs
 
 # Dev Setup
 `> mkvirtualenv weather-api-server`  
-`> pip install aws-sam-cli`  
+`> pip3 install aws-sam-cli`  
 `> npm use`
 
 # Watch and Compile Typescript
@@ -12,7 +12,7 @@ A simple server that proxies requests to [Dark Sky](https://darksky.net/dev/docs
 # Package
 `> infrastructure/scripts/package.sh`
 
-# Testing localling with SAM local (must run after the Package step)
+# Testing locally with SAM local (must run after the Package step)
 ```
 > DARK_SKY_API_KEY=${DARK_SKY_API_KEY} sam local invoke \
     "WeatherFunction" --template infrastructure/sam.yaml \
