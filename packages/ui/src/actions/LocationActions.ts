@@ -2,11 +2,12 @@ import { createAction } from 'typesafe-actions';
 import Location from '../services/Location';
 import { AnyAction } from "redux";
 import GeocodeService from '../services/GeocodeService';
-import GeocoderAddressComponent = google.maps.GeocoderAddressComponent;
+
 import { loadWeatherDataWithThunk } from "./WeatherActions";
 import { ThunkDispatch } from "redux-thunk";
 import { AppState } from "../types";
-import GeocoderResult = google.maps.GeocoderResult;
+// import GeocoderAddressComponent = google.maps.GeocoderAddressComponent;
+// import GeocoderResult = google.maps.GeocoderResult;
 
 export const setLocation = createAction('location/SET_LOCATION', resolve => {
   return (location: Location) => resolve(location);
@@ -25,13 +26,13 @@ export const setLocationWithThunk = (location: Location) => (dispatch: ThunkDisp
     loadWeatherDataWithThunk(location)
   );
 
-  const findLocalityName = (addressComponents: GeocoderAddressComponent[]) => {
+  const findLocalityName = (addressComponents: google.maps.GeocoderAddressComponent[]) => {
     const locality = addressComponents.find((component => component.types.some((type) => type === 'locality')));
     return locality ? locality.long_name : 'Unknown'
   };
 
   geocodeService.reverseGeocode(location)
-    .then((geocodeResult: GeocoderResult[]) => {
+    .then((geocodeResult: google.maps.GeocoderResult[]) => {
       const addressComponents = geocodeResult[0].address_components;
       dispatch(
         setLocationDisplay(findLocalityName(addressComponents))

@@ -1,11 +1,11 @@
 /// <reference types="@types/googlemaps" />
 import Location from "./Location";
-import GeocoderResult = google.maps.GeocoderResult;
-import GeocoderStatus = google.maps.GeocoderStatus;
+// import GeocoderResult = google.maps.GeocoderResult;
+// import GeocoderStatus = google.maps.GeocoderStatus;
 
 class GeocodeService {
   reverseGeocode(location: Location) {
-    return new Promise(function (resolve, reject) {
+    return new Promise<google.maps.GeocoderResult[]>(function (resolve, reject) {
       const geocoder = new window.google.maps.Geocoder();
       geocoder.geocode(
         {
@@ -13,7 +13,7 @@ class GeocodeService {
             lat: location.lat, lng: location.lon
           }
         },
-        (results: GeocoderResult[], status: GeocoderStatus) => {
+        (results: google.maps.GeocoderResult[], status: google.maps.GeocoderStatus) => {
           // do not confuse
           //    window.google.maps.GeocoderStatus.OK (from Google Maps JS library)
           // with

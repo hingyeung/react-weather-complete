@@ -40,9 +40,9 @@ const RWHeading = styled.h1`
 `;
 
 class ReactWeather extends Component<IReactWeatherProps> {
-  constructor(props: IReactWeatherProps) {
-    super(props);
-  }
+  // constructor(props: IReactWeatherProps) {
+  //   super(props);
+  // }
 
   render() {
     let locationSelector;
