@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "env-cmd": "^10.0.1",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-location-picker": "^1.3.0",
@@ -18,6 +19,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build:test": "env-cmd -f .env.test react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "start-local-api-server": "node src/server/server.js",
     "eject": "react-scripts eject"
