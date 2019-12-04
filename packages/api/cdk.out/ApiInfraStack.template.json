@@ -1,0 +1,116 @@
+{
+  "Resources": {
+    "weatherApiFunctionServiceRole419C3A20": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+              ]
+            ]
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "ApiInfraStack/weatherApiFunction/ServiceRole/Resource"
+      }
+    },
+    "weatherApiFunction4ABE91DF": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "AssetParameters838f2828cf2eecf9440f055978dd2c9b2084f2f98e6cf6ebc787178b02a24e87S3Bucket127A64DA"
+          },
+          "S3Key": {
+            "Fn::Join": [
+              "",
+              [
+                {
+                  "Fn::Select": [
+                    0,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParameters838f2828cf2eecf9440f055978dd2c9b2084f2f98e6cf6ebc787178b02a24e87S3VersionKeyBC694DEF"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Fn::Select": [
+                    1,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParameters838f2828cf2eecf9440f055978dd2c9b2084f2f98e6cf6ebc787178b02a24e87S3VersionKeyBC694DEF"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "weatherApiFunctionServiceRole419C3A20",
+            "Arn"
+          ]
+        },
+        "Runtime": "nodejs12.x",
+        "Environment": {
+          "Variables": {
+            "DARK_SKY_API_KEY": "c130fde9cff5589570d6904677d96f5a"
+          }
+        }
+      },
+      "DependsOn": [
+        "weatherApiFunctionServiceRole419C3A20"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "ApiInfraStack/weatherApiFunction/Resource",
+        "aws:asset:path": "asset.838f2828cf2eecf9440f055978dd2c9b2084f2f98e6cf6ebc787178b02a24e87",
+        "aws:asset:property": "Code"
+      }
+    }
+  },
+  "Parameters": {
+    "AssetParameters838f2828cf2eecf9440f055978dd2c9b2084f2f98e6cf6ebc787178b02a24e87S3Bucket127A64DA": {
+      "Type": "String",
+      "Description": "S3 bucket for asset \"838f2828cf2eecf9440f055978dd2c9b2084f2f98e6cf6ebc787178b02a24e87\""
+    },
+    "AssetParameters838f2828cf2eecf9440f055978dd2c9b2084f2f98e6cf6ebc787178b02a24e87S3VersionKeyBC694DEF": {
+      "Type": "String",
+      "Description": "S3 key for asset version \"838f2828cf2eecf9440f055978dd2c9b2084f2f98e6cf6ebc787178b02a24e87\""
+    },
+    "AssetParameters838f2828cf2eecf9440f055978dd2c9b2084f2f98e6cf6ebc787178b02a24e87ArtifactHash70E6715D": {
+      "Type": "String",
+      "Description": "Artifact hash for asset \"838f2828cf2eecf9440f055978dd2c9b2084f2f98e6cf6ebc787178b02a24e87\""
+    }
+  }
+}
