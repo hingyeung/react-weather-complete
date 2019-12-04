@@ -22,6 +22,11 @@
     // "paths": {
     //   "@ui/*": ["packages/ui/*"]
     // }
+    "outDir": "dist",
   },
-  "exclude": ["cdk.out"]
+  "exclude": [
+    "cdk.out",
+    "node_modules",
+    "dist"
+  ]
 }
