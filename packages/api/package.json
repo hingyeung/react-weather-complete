@@ -15,7 +15,7 @@
     "prepare": "npm run compile",
     "pretest": "npm run compile",
     "posttest": "npm run check",
-    "package": "rm -r ./dist && npm run compile && infrastructure/scripts/package.sh",
+    "package": "rm -rf ./dist && npm run compile && infrastructure/scripts/package.sh",
     "cf-deploy-stack": "infrastructure/scripts/cf_deploy_stack.sh",
     "synth:api:test": "npm run package && CDK_STACK_ENV=test AWS_PROFILE=samuelli-test cdk synth --app dist/infrastructure/api-infra.js",
     "deploy:api:test": "CDK_STACK_ENV=test AWS_PROFILE=samuelli-test cdk deploy --app dist/infrastructure/api-infra.js",
