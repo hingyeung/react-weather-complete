@@ -23,5 +23,11 @@ export class ApiStack extends cdk.Stack {
       code: Code.asset(join(__dirname, '..')),
       environment: {DARK_SKY_API_KEY: envConfig.DARK_SKY_API_KEY},
     });
+
+    // Output the function name, which is needed when invoking the function
+    // using `sam local invoke "function_logical_id_from_generated_cf_template"`.
+    // Hoping for better integration between CDK and SAM soon:
+    // https://github.com/aws/aws-cdk/issues/716
+    new cdk.CfnOutput(this, "weatherApiFunctionOutput", { value: weatherApiFunction.functionName});
   }
 }
