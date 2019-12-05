@@ -18,7 +18,7 @@ export class ApiStack extends cdk.Stack {
 
     // The code that defines your stack goes here
     const weatherApiFunction = new Function(this, 'weatherApiFunction', {
-      runtime: Runtime.NODEJS_12_X,
+      runtime: Runtime.NODEJS_10_X,
       handler: 'index.handler',
       code: Code.asset(join(__dirname, '..')),
       environment: {DARK_SKY_API_KEY: envConfig.DARK_SKY_API_KEY},

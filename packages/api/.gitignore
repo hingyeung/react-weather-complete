@@ -71,3 +71,10 @@ npm-debug.log*
 
 # build output
 dist
+
+# CDK asset staging directory
+.cdk.staging
+cdk.out
+
+.env
+.env.*
