@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import 'source-map-support/register';
+import { ApiStack, ApiStackProps } from './api-stack';
 import cdk = require('@aws-cdk/core');
-import {ApiStack, ApiStackProps} from './api-stack';
 import dotenv = require('dotenv');
 
 const stackEnv = process.env.CDK_STACK_ENV;

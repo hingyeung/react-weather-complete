@@ -19,6 +19,7 @@
     "cf-deploy-stack": "infrastructure/scripts/cf_deploy_stack.sh",
     "synth:api:test": "npm run package && CDK_STACK_ENV=test AWS_PROFILE=samuelli-test cdk synth --app dist/infrastructure/api-infra.js",
     "deploy:api:test": "CDK_STACK_ENV=test AWS_PROFILE=samuelli-test cdk deploy --app dist/infrastructure/api-infra.js",
+    "diff:api:test": "CDK_STACK_ENV=test AWS_PROFILE=samuelli-test cdk diff --app dist/infrastructure/api-infra.js",
     "destroy:api:test": "CDK_STACK_ENV=test AWS_PROFILE=samuelli-test cdk destroy --app dist/infrastructure/api-infra.js",
     "synth:api:test-no-staging": "mkdir -p ./tmp && npm run package && CDK_STACK_ENV=test AWS_PROFILE=samuelli-test cdk synth --app dist/infrastructure/api-infra.js --no-staging |tee  ./tmp/cf_template_from_cdk.yaml",
     "//": "The function name 'weatherApiFunction4ABE91DF' is extracted from cdk synth output MANUALLY. See the CDK code for more details.",

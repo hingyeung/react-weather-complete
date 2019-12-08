@@ -1,15 +1,16 @@
 import cdk = require('@aws-cdk/core');
-import {Function, Runtime, Code} from '@aws-cdk/aws-lambda';
-import {join} from 'path';
-import dotenv = require('dotenv');
-import { RestApi, LambdaIntegration } from '@aws-cdk/aws-apigateway';
-
-interface EnvConfig {
-  [DARK_SKY_API_KEY: string]: string;
-}
+import { LambdaIntegration, RestApi } from '@aws-cdk/aws-apigateway';
+import { Certificate, DnsValidatedCertificate } from '@aws-cdk/aws-certificatemanager';
+import { Code, Function, Runtime } from '@aws-cdk/aws-lambda';
+import { HostedZone } from '@aws-cdk/aws-route53';
+import { Construct } from '@aws-cdk/core';
+import { join } from 'path';
 
 export interface ApiStackProps extends cdk.StackProps {
   DARK_SKY_API_KEY: string;
+  hostedZone: string;
+  domainName: string;
+  certArn?: string;
 }
 
 export class ApiStack extends cdk.Stack {
@@ -30,8 +31,16 @@ export class ApiStack extends cdk.Stack {
     // https://github.com/aws/aws-cdk/issues/716
     const ignored = new cdk.CfnOutput(this, "weatherApiFunctionOutput", { value: weatherApiFunction.functionName});
 
+    const cert = props.certArn ? 
+      Certificate.fromCertificateArn(this, 'API Certificate', props.certArn) :
+      ApiStack.createCert(this, props);
+
     // api gateway
-    const api = new RestApi(this, 'api', {
+    const api = new RestApi(this, 'weather-api', {
+      domainName: {
+        domainName: props.domainName,
+        certificate: cert
+      },
       deployOptions: {
         stageName: 'dev'
       }
@@ -41,5 +50,15 @@ export class ApiStack extends cdk.Stack {
       'GET',
       new LambdaIntegration(weatherApiFunction)
     );
+  }
+  
+  static createCert(scope: Construct, props: ApiStackProps) {
+    return new DnsValidatedCertificate(scope, 'API Certificate', {
+      hostedZone: HostedZone.fromLookup(scope, 'HostedZone', {
+        domainName: props.hostedZone
+      }),
+      domainName: props.domainName,
+      region: 'ap-southeast-2'
+    });
   }
 }
