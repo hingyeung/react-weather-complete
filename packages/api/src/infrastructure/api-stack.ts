@@ -1,5 +1,5 @@
 import cdk = require('@aws-cdk/core');
-import { DomainName, EndpointType, LambdaIntegration, RestApi } from '@aws-cdk/aws-apigateway';
+import { DomainName, EndpointType, LambdaIntegration, RestApi, MockIntegration, PassthroughBehavior, IResource, Cors } from '@aws-cdk/aws-apigateway';
 import { Certificate, DnsValidatedCertificate } from '@aws-cdk/aws-certificatemanager';
 import { Code, Function, Runtime } from '@aws-cdk/aws-lambda';
 import { ARecord, HostedZone, IHostedZone, RecordTarget } from '@aws-cdk/aws-route53';
@@ -12,6 +12,7 @@ export interface ApiStackProps extends cdk.StackProps {
   hostedZone: string;
   domainName: string;
   certArn?: string;
+  corsUrl: string;
 }
 
 export class ApiStack extends cdk.Stack {
@@ -23,7 +24,10 @@ export class ApiStack extends cdk.Stack {
       runtime: Runtime.NODEJS_10_X,
       handler: 'index.handler',
       code: Code.asset(join(__dirname, '..')),
-      environment: {DARK_SKY_API_KEY: props.DARK_SKY_API_KEY},
+      environment: {
+        DARK_SKY_API_KEY: props.DARK_SKY_API_KEY,
+        CORS_DOMAIN: props.corsUrl
+      },
     });
 
     // Output the function name, which is needed when invoking the function
@@ -45,8 +49,8 @@ export class ApiStack extends cdk.Stack {
         stageName: 'dev'
       }
     });
-    const weather = api.root.addResource("weather");
-    const weatherMethod = weather.addMethod(
+    const weatherResource = api.root.addResource("weather");
+    const getMethod = weatherResource.addMethod(
       'GET',
       new LambdaIntegration(weatherApiFunction)
     );

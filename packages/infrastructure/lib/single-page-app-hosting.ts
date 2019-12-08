@@ -1,14 +1,14 @@
-import { Construct } from "@aws-cdk/core"
-import { IHostedZone, ARecord, RecordTarget } from "@aws-cdk/aws-route53";
-import {CloudFrontWebDistribution, CfnCloudFrontOriginAccessIdentity, PriceClass, ViewerProtocolPolicy} from '@aws-cdk/aws-cloudfront';
 import { DnsValidatedCertificate } from "@aws-cdk/aws-certificatemanager";
-import cdk = require('@aws-cdk/core');
-import * as s3 from "@aws-cdk/aws-s3";
-import { Bucket, BlockPublicAccess } from "@aws-cdk/aws-s3";
-import { PolicyStatement, CanonicalUserPrincipal } from "@aws-cdk/aws-iam";
-import {CloudFrontTarget} from "@aws-cdk/aws-route53-targets";
+import { CfnCloudFrontOriginAccessIdentity, CloudFrontWebDistribution, PriceClass, ViewerProtocolPolicy } from '@aws-cdk/aws-cloudfront';
+import { CanonicalUserPrincipal, PolicyStatement } from "@aws-cdk/aws-iam";
+import { ARecord, IHostedZone, RecordTarget } from "@aws-cdk/aws-route53";
+import { CloudFrontTarget } from "@aws-cdk/aws-route53-targets";
+import { BlockPublicAccess, IBucket } from "@aws-cdk/aws-s3";
 import * as S3deploy from "@aws-cdk/aws-s3-deployment";
+import { Construct } from "@aws-cdk/core";
+import { AutoDeleteBucket } from '@mobileposse/auto-delete-bucket';
 import { join } from 'path';
+import cdk = require('@aws-cdk/core');
 
 export interface SinglePageAppHostingProps {
   domainName: string;
@@ -19,7 +19,7 @@ export interface SinglePageAppHostingProps {
 
 // https://garbe.io/blog/2019/10/01/hey-cdk-how-to-write-less-code/
 class SinglePageAppHosting extends Construct {
-  public readonly webBucket : Bucket;
+  public readonly webBucket : IBucket;
   public readonly distribution : CloudFrontWebDistribution;
   
   constructor(scope: Construct, id: string, props: SinglePageAppHostingProps) {
@@ -32,23 +32,18 @@ class SinglePageAppHosting extends Construct {
     });
 
     // s3 bucket and only allows access from OAI
-    this.webBucket = new s3.Bucket(this, 's3bucket', {
+    this.webBucket = new AutoDeleteBucket(this, 's3bucket', {
       bucketName: props.bucketName,
       blockPublicAccess: BlockPublicAccess.BLOCK_ALL,
       websiteIndexDocument: 'index.html',
       // publicReadAccess: true
-    });
+    })
+    
     this.webBucket.addToResourcePolicy(new PolicyStatement({
       actions: ['s3:GetObject'],
       resources: [this.webBucket.arnForObjects('*')],
       principals: [new CanonicalUserPrincipal(oai.attrS3CanonicalUserId)],
     }));
-
-    new S3deploy.BucketDeployment(this, 'DeployWebsite', {
-      sources: [S3deploy.Source.asset(join(__dirname, '../../../packages/ui/build'))],
-      destinationBucket: this.webBucket
-      // destinationKeyPrefix: 'web/static' // optional prefix in destination bucket
-    });
 
     // either use provided cert or create one in ACM
     const certArn = props.certArn || new DnsValidatedCertificate(this, 'Certificate', {
@@ -86,6 +81,15 @@ class SinglePageAppHosting extends Construct {
       comment: `${props.domainName} Website`,
       priceClass: PriceClass.PRICE_CLASS_ALL,
       viewerProtocolPolicy: ViewerProtocolPolicy.REDIRECT_TO_HTTPS
+    });
+
+    // deploy web code to bucket, invalidate index.html in cloudfront
+    new S3deploy.BucketDeployment(this, 'DeployWebsite', {
+      sources: [S3deploy.Source.asset(join(__dirname, '../../../packages/ui/build'))],
+      destinationBucket: this.webBucket,
+      // destinationKeyPrefix: 'web/static' // optional prefix in destination bucket
+      distribution: this.distribution,
+      distributionPaths: ['/index.html']
     });
 
     // route53 alias record
