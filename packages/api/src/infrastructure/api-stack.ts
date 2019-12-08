@@ -1,8 +1,9 @@
 import cdk = require('@aws-cdk/core');
-import { LambdaIntegration, RestApi } from '@aws-cdk/aws-apigateway';
+import { DomainName, EndpointType, LambdaIntegration, RestApi } from '@aws-cdk/aws-apigateway';
 import { Certificate, DnsValidatedCertificate } from '@aws-cdk/aws-certificatemanager';
 import { Code, Function, Runtime } from '@aws-cdk/aws-lambda';
-import { HostedZone } from '@aws-cdk/aws-route53';
+import { ARecord, HostedZone, IHostedZone, RecordTarget } from '@aws-cdk/aws-route53';
+import { ApiGatewayDomain } from '@aws-cdk/aws-route53-targets';
 import { Construct } from '@aws-cdk/core';
 import { join } from 'path';
 
@@ -31,16 +32,15 @@ export class ApiStack extends cdk.Stack {
     // https://github.com/aws/aws-cdk/issues/716
     const ignored = new cdk.CfnOutput(this, "weatherApiFunctionOutput", { value: weatherApiFunction.functionName});
 
+    const hostedZone = HostedZone.fromLookup(this, 'HostedZone', {
+      domainName: props.hostedZone
+    });
     const cert = props.certArn ? 
       Certificate.fromCertificateArn(this, 'API Certificate', props.certArn) :
-      ApiStack.createCert(this, props);
+      ApiStack.createCert(this, props, hostedZone);
 
     // api gateway
     const api = new RestApi(this, 'weather-api', {
-      domainName: {
-        domainName: props.domainName,
-        certificate: cert
-      },
       deployOptions: {
         stageName: 'dev'
       }
@@ -50,13 +50,26 @@ export class ApiStack extends cdk.Stack {
       'GET',
       new LambdaIntegration(weatherApiFunction)
     );
+    
+    // custom domain name for API
+    const domainName = new DomainName(this, 'CustomDomain', {
+      certificate: cert,
+      domainName: props.domainName,
+      endpointType: EndpointType.REGIONAL
+    });
+    domainName.addBasePathMapping(api, {basePath: 'v1'});
+
+    // add custom domain name to Route 53
+    const aRecord = new ARecord(this, 'AliasRecord', {
+      recordName: props.domainName,
+      zone: hostedZone,
+      target: RecordTarget.fromAlias(new ApiGatewayDomain(domainName))
+    });
   }
   
-  static createCert(scope: Construct, props: ApiStackProps) {
+  static createCert(scope: Construct, props: ApiStackProps, hostedZone: IHostedZone) {
     return new DnsValidatedCertificate(scope, 'API Certificate', {
-      hostedZone: HostedZone.fromLookup(scope, 'HostedZone', {
-        domainName: props.hostedZone
-      }),
+      hostedZone,
       domainName: props.domainName,
       region: 'ap-southeast-2'
     });
