@@ -1,5 +1,4 @@
-import cdk = require('@aws-cdk/core');
-import s3 = require('@aws-cdk/aws-s3');
+import * as cdk from '@aws-cdk/core';
 import SinglePageAppHosting from './single-page-app-hosting';
 import {HostedZone} from '@aws-cdk/aws-route53';
 

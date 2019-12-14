@@ -8,7 +8,7 @@ import * as S3deploy from "@aws-cdk/aws-s3-deployment";
 import { Construct } from "@aws-cdk/core";
 import { AutoDeleteBucket } from '@mobileposse/auto-delete-bucket';
 import { join } from 'path';
-import cdk = require('@aws-cdk/core');
+import * as cdk from '@aws-cdk/core';
 
 export interface SinglePageAppHostingProps {
   domainName: string;

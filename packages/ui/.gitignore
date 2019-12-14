@@ -84,3 +84,10 @@ fabric.properties
 
 # Editor-based Rest Client
 .idea/httpRequests
+
+# CDK asset staging directory
+.cdk.staging
+cdk.out
+/build-infra
+.env
+.env.infra*
