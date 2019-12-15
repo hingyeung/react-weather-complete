@@ -13,6 +13,12 @@ See the live demo [here](https://weather.demo.samuelli.net).
 ## run test
 `> npm run test`
 
+# Deployment
+```
+> npm run build-infra
+> CDK_STACK_NAME=weather-ui-test npm run deploy:ui:test
+```
+
 # Notes
 Q: What do I do if I see this error message during development: `Error: watch <some_path_to_file> ENOSPC`?
 1. Add the following line to  /etc/sysctl.conf  
