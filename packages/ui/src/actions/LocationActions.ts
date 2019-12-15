@@ -3,7 +3,7 @@ import Location from '../services/Location';
 import { AnyAction } from "redux";
 import GeocodeService from '../services/GeocodeService';
 
-import { loadWeatherDataWithThunk } from "./WeatherActions";
+import * as weatherActions from "./WeatherActions";
 import { ThunkDispatch } from "redux-thunk";
 import { AppState } from "../types";
 // import GeocoderAddressComponent = google.maps.GeocoderAddressComponent;
@@ -20,10 +20,11 @@ export const setLocationDisplay = createAction('location/SET_LOCATION_DISPLAY', 
 export const setLocationWithThunk = (location: Location) => (dispatch: ThunkDispatch<AppState, void, AnyAction>) => {
   const geocodeService = new GeocodeService();
   dispatch(
-    setLocation(location)
+    // see exported "lib" object below
+    lib.setLocation(location)
   );
   dispatch(
-    loadWeatherDataWithThunk(location)
+    weatherActions.lib.loadWeatherDataWithThunk(location)
   );
 
   const findLocalityName = (addressComponents: google.maps.GeocoderAddressComponent[]) => {
@@ -35,8 +36,16 @@ export const setLocationWithThunk = (location: Location) => (dispatch: ThunkDisp
     .then((geocodeResult: google.maps.GeocoderResult[]) => {
       const addressComponents = geocodeResult[0].address_components;
       dispatch(
-        setLocationDisplay(findLocalityName(addressComponents))
+        lib.setLocationDisplay(findLocalityName(addressComponents))
       );
     })
     .catch((error: any) => console.log(error));
 };
+
+// This exported object helps unit tests to mock other exported function
+// in the same module.
+// https://luetkemj.github.io/170421/mocking-modules-in-jest
+export const lib = {
+  setLocation,
+  setLocationDisplay
+}

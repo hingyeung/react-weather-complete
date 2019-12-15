@@ -45,30 +45,42 @@ export const loadWeatherDataWithThunk = (location: Location, units: Units = Unit
   darkSkyService(location.lat, location.lon)
     .then((resp: any) => {
       dispatch(
-        // invoking setTemperature function via exports to make unit test easier
-        // https://github.com/facebook/jest/issues/936#issuecomment-214939935
-        setTemperature(parseFloat(resp.data.currently.temperature))
+        // see exported "lib" object below
+        lib.setTemperature(parseFloat(resp.data.currently.temperature))
       );
       dispatch(
-        setApparentTemperature(parseFloat(resp.data.currently.apparentTemperature))
+        lib.setApparentTemperature(parseFloat(resp.data.currently.apparentTemperature))
       );
       units === Units.SI ?
         dispatch(
-          setTemperatureUnitToC()
+          lib.setTemperatureUnitToC()
         ) :
         dispatch(
-          setTemperatureUnitToF()
+          lib.setTemperatureUnitToF()
         );
       dispatch(
-        setSummary(resp.data.hourly.summary)
+        lib.setSummary(resp.data.hourly.summary)
       );
       dispatch(
-        setLastUpdated(resp.data.currently.time)
+        lib.setLastUpdated(resp.data.currently.time)
       );
       dispatch(
-        setIcon(resp.data.currently.icon)
+        lib.setIcon(resp.data.currently.icon)
       );
     })
     .catch((error: any) => console.log(error));
 };
 
+// This exported object helps unit tests to mock other exported function
+// in the same module.
+// https://luetkemj.github.io/170421/mocking-modules-in-jest
+export const lib = {
+  setTemperature,
+  setSummary,
+  setLastUpdated,
+  setApparentTemperature,
+  setTemperatureUnitToC,
+  setTemperatureUnitToF,
+  setIcon,
+  loadWeatherDataWithThunk
+};
