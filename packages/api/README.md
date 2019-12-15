@@ -15,7 +15,7 @@ A simple server that proxies requests to [Dark Sky](https://darksky.net/dev/docs
 `> npm run package`
 
 # Testing locally with SAM local (must run after the Package step)
-`> CDK_STACK_NAME=weather-api-server-test npm run invoke`
+`> npm run invoke --stack-name=weather-api-server-test`
 
 # Deploy
-`> CDK_STACK_NAME=weather-api-server-test npm run deploy:api:test`
+`> npm run deploy:api --env=test --stack-name=weather-api-server-test`

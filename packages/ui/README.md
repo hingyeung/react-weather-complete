@@ -16,7 +16,7 @@ See the live demo [here](https://weather.demo.samuelli.net).
 # Deployment
 ```
 > npm run build-infra
-> CDK_STACK_NAME=weather-ui-test npm run deploy:ui:test
+> npm run deploy:ui --env=test --stack-name=weather-ui-test
 ```
 
 # Notes

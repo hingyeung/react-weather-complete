@@ -14,28 +14,30 @@ Build artefact for production environment
 `> lenra run build`  
 
 Build artefact for test environment  
-`> lerna run build:test`  
+`> lerna run build --env=test`  
 
 Preview generated CF template for UI  
-`> CDK_STACK_NAME=react-weather-ui-test AWS_PROFILE=your_profile lerna run synth:ui:test`  
+`> lerna run synth:ui --env=test --stack-name=react-weather-ui-test`  
 
 Preview generated CF template for API  
-`> CDK_STACK_NAME=react-weather-api-test AWS_PROFILE=your_profile lerna run synth:api:test`  
+`> lerna run synth:api --env=test --stack-name=react-weather-api-test`  
 
-Show proposed changes for UI Stack `react-weather-ui-test`  
-`> CDK_STACK_NAME=react-weather-ui-test AWS_PROFILE=your_profile lerna run diff:ui:test`  
+Show proposed changes for UI Stack  
+`react-weather-ui-test`  
+`> lerna run diff:ui --env=test --stack-name=react-weather-ui-test`  
 
-Show proposed changes for API Stack `react-weather-api-test`  
-`> CDK_STACK_NAME=react-weather-api-test AWS_PROFILE=your_profile lerna run diff:api:test`  
+Show proposed changes for API Stack  
+`react-weather-api-test`  
+`> lerna run diff:api --env=test --stack-name=react-weather-api-test`  
 
 Deploy UI stack `react-weather-ui-test` to test environment  
-`> CDK_STACK_NAME=react-weather-ui-test AWS_PROFILE=your_profile lerna run deploy:ui:test`  
+`> lerna run deploy:ui --env=test --stack-name=react-weather-ui-test`  
 
 Deploy API stack `react-weather-api-test` to test environment  
-`> CDK_STACK_NAME=react-weather-api-test AWS_PROFILE=your_profile lerna run deploy:api:test`  
+`> lerna run deploy:api --env=test --stack-name=react-weather-api-test`  
 
 Destroy UI stack `react-weather-ui-test` (I couldn't get the `cdk destroy` command working with the `lerna`)  
-`> cd packages/ui-infra && CDK_STACK_NAME=react-weather-ui-test AWS_PROFILE=your_profile npm run destroy:ui:test`  
+`> cd packages/ui-infra && AWS_PROFILE=your_profile npm run destroy:ui --env=test --stack-name=react-weather-ui-test`  
 
 Destroy API stack `react-weather-api-test`  
-`> cd packages/ui-infra && CDK_STACK_NAME=react-weather-api-test AWS_PROFILE=your_profile npm run destroy:api:test`  
+`> npm run destroy:api --env=test --stack-name=react-weather-api-test`  
