@@ -6,7 +6,12 @@ import dotenv = require('dotenv');
 
 const stackEnv = process.env.CDK_STACK_ENV;
 const stackName = process.env.CDK_STACK_NAME;
-const envConfig = { ...dotenv.config({path: `.env.${stackEnv}`}).parsed} as ApiStackProps;
+const dotEnvConfig = dotenv.config({path: `.env.${stackEnv}`});
+const envConfig = { ...dotEnvConfig.parsed} as ApiStackProps;
+if (dotEnvConfig.error) {
+  console.error(dotEnvConfig.error);
+  process.exit(1);
+}
 
 if (!stackEnv || !stackName) {
   console.error(`CDK_STACK_ENV and CDK_STACK_NAME environment variables must be set.`);

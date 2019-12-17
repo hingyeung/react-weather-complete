@@ -23,7 +23,7 @@ export class ApiStack extends cdk.Stack {
     const weatherApiFunction = new Function(this, 'weatherApiFunction', {
       runtime: Runtime.NODEJS_10_X,
       handler: 'index.handler',
-      code: Code.asset(join(__dirname, '..')),
+      code: Code.asset(join(__dirname, '../../dist')),
       environment: {
         DARK_SKY_API_KEY: props.DARK_SKY_API_KEY,
         CORS_DOMAIN: props.corsUrl

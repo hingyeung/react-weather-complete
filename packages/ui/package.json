@@ -25,10 +25,10 @@
     "build-infra": "tsc --project src/infrastructure/",
     "watch-infra": "tsc -w --outDir build-infra src/infrastructure/*",
     "test-infra": "jest",
-    "synth:ui": "npm run build-infra && CDK_STACK_NAME=$npm_config_stack_name CDK_STACK_ENV=$npm_config_env AWS_PROFILE=samuelli-$npm_config_env cdk synth --app build-infra/main.js",
-    "deploy:ui": "npm run build-infra && CDK_STACK_NAME=$npm_config_stack_name CDK_STACK_ENV=$npm_config_env AWS_PROFILE=samuelli-$npm_config_env cdk deploy --app build-infra/main.js",
-    "destroy:ui": "npm run build-infra && CDK_STACK_NAME=$npm_config_stack_name CDK_STACK_ENV=$npm_config_env AWS_PROFILE=samuelli-$npm_config_env cdk destroy --app build-infra/main.js",
-    "diff:ui": "npm run build-infra && CDK_STACK_NAME=$npm_config_stack_name CDK_STACK_ENV=$npm_config_env AWS_PROFILE=samuelli-$npm_config_env cdk diff --app build-infra/main.js"
+    "synth:ui": "CDK_STACK_NAME=$npm_config_stack_name CDK_STACK_ENV=$npm_config_env AWS_PROFILE=samuelli-$npm_config_env cdk synth --app='npx ts-node --project src/infrastructure/tsconfig.json src/infrastructure/main.ts'",
+    "deploy:ui": "npm run build-infra && CDK_STACK_NAME=$npm_config_stack_name CDK_STACK_ENV=$npm_config_env AWS_PROFILE=samuelli-$npm_config_env cdk deploy --app='npx ts-node --project src/infrastructure/tsconfig.json src/infrastructure/main.ts'",
+    "destroy:ui": "npm run build-infra && CDK_STACK_NAME=$npm_config_stack_name CDK_STACK_ENV=$npm_config_env AWS_PROFILE=samuelli-$npm_config_env cdk destroy --app='npx ts-node --project src/infrastructure/tsconfig.json src/infrastructure/main.ts'",
+    "diff:ui": "npm run build-infra && CDK_STACK_NAME=$npm_config_stack_name CDK_STACK_ENV=$npm_config_env AWS_PROFILE=samuelli-$npm_config_env cdk diff --app='npx ts-node --project src/infrastructure/tsconfig.json src/infrastructure/main.ts'"
   },
   "devDependencies": {
     "@types/enzyme": "^3.1.13",

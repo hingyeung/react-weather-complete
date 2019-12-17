@@ -86,7 +86,8 @@ fabric.properties
 .idea/httpRequests
 
 # CDK asset staging directory
-.cdk.staging
+.cdk.*
+cdk.context.json
 cdk.out
 /build-infra
 .env

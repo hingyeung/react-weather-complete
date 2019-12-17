@@ -85,7 +85,7 @@ class SinglePageAppHosting extends Construct {
 
     // deploy web code to bucket, invalidate index.html in cloudfront
     new S3deploy.BucketDeployment(this, 'DeployWebsite', {
-      sources: [S3deploy.Source.asset(join(__dirname, '../../../packages/ui/build'))],
+      sources: [S3deploy.Source.asset(join(__dirname, '../../build'))],
       destinationBucket: this.webBucket,
       // destinationKeyPrefix: 'web/static' // optional prefix in destination bucket
       distribution: this.distribution,
