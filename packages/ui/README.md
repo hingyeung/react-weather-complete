@@ -16,7 +16,7 @@ See the live demo [here](https://weather.demo.samuelli.net).
 # Deployment
 ```
 > npm run build-infra
-> npm run deploy:ui --env=test --stack-name=weather-ui-test
+> npm run deploy:ui --env=test --stack-name-suffix=`date +"%Y%m%d"`
 ```
 
 # Notes
