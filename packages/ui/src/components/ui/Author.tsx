@@ -39,7 +39,7 @@ const Author: SFC = (props) => {
       <Name>&#169; Samuel Li</Name>
       <div>
         <StyledIconLink href="mailto:samli@samuelli.net" alt="email icon" iconSrc={emailIcon}/>
-        <StyledIconLink href="https://github.com/hingyeung/react-weather" alt="github icon" target="_blank" iconSrc={githubIcon}/>
+        <StyledIconLink href="https://github.com/hingyeung/react-weather-complete" alt="github icon" target="_blank" iconSrc={githubIcon}/>
       </div>
     </AuthorSC>
   )

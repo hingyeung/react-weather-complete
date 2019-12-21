@@ -1,4 +1,9 @@
-## react-weather-combo
+## react-weather-complete
+A demo/practice [React](https://reactjs.org/) app created to learn more about managing state with [Redux](https://redux.js.org/). It shows the weather information of a user-selected location. It fetches weather data from [Dark Sky API](https://darksky.net/dev) via [weather-api-server](https://github.com/hingyeung/react-weather-complete/tree/master/packages/api).
+
+![alt text](packages/ui/images/demo.png)
+
+See the live demo [here](https://weather.demo.samuelli.net).
 
 ### Install Dependencies
 AWS CDK & Lerna  
