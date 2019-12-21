@@ -16,7 +16,7 @@ Modify .env.test accordingly.
 
 ### Useful Tasks
 Build artefact for production environment  
-`> lenra run build`  
+`> lenra run build -- --env=production`  
 
 Build artefact for test environment  
 `> lerna run build -- --env=test`  
