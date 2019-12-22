@@ -4,13 +4,15 @@ import Location from '../services/Location';
 jest.unmock('./WeatherActions');
 // const weatherActions = require('./WeatherActions');
 import * as weatherActions from './WeatherActions';
-weatherActions.lib.setSummary = jest.fn();
-weatherActions.lib.setLastUpdated = jest.fn();
+// weatherActions.lib.setSummary = jest.fn();
+// weatherActions.lib.setLastUpdated = jest.fn();
 weatherActions.lib.setTemperature = jest.fn();
-weatherActions.lib.setApparentTemperature = jest.fn();
+// weatherActions.lib.setApparentTemperature = jest.fn();
 weatherActions.lib.setTemperatureUnitToC = jest.fn();
 weatherActions.lib.setTemperatureUnitToF = jest.fn();
-weatherActions.lib.setIcon = jest.fn();
+weatherActions.lib.setCurrently = jest.fn();
+// weatherActions.lib.setIcon = jest.fn();
+const returnedWeatherData = require('../test/data/weather_data_small.json')
 
 jest.mock('../services/darksky', () => ({
   __esModule: true,
@@ -32,44 +34,44 @@ describe('LoadWeatherData action', () => {
     dispatch = jest.fn().mockName('dispatch');
   });
 
-  it('should set temperature', async () => {
-    // darkSkyService.default = () => Promise.resolve({data: MOCK_DATA});
-    await weatherActions.loadWeatherDataWithThunk(TEST_LOC)(dispatch);
+  // it('should set temperature', async () => {
+  //   // darkSkyService.default = () => Promise.resolve({data: MOCK_DATA});
+  //   await weatherActions.loadWeatherDataWithThunk(TEST_LOC)(dispatch);
 
-    expect(weatherActions.lib.setTemperature).toHaveBeenCalledWith(15);
-  });
+  //   expect(weatherActions.lib.setTemperature).toHaveBeenCalledWith(15);
+  // });
 
-  it('should set apparent temperature', async () => {
-    await weatherActions.loadWeatherDataWithThunk(TEST_LOC)(dispatch);
+  // it('should set apparent temperature', async () => {
+  //   await weatherActions.loadWeatherDataWithThunk(TEST_LOC)(dispatch);
 
-    expect(weatherActions.lib.setApparentTemperature).toHaveBeenCalledWith(10);
-  });
+  //   expect(weatherActions.lib.setApparentTemperature).toHaveBeenCalledWith(10);
+  // });
 
   it('should set default temperature unit', async () => {
     await weatherActions.loadWeatherDataWithThunk(TEST_LOC)(dispatch);
 
-    expect(weatherActions.lib.setTemperatureUnitToC).toHaveBeenCalled()
+    expect(weatherActions.lib.setTemperatureUnitToC).toHaveBeenCalledWith()
   });
 
   it('should set temperature unit for US', async () => {
     await weatherActions.loadWeatherDataWithThunk(TEST_LOC, Units.US)(dispatch);
 
-    expect(weatherActions.lib.setTemperatureUnitToF).toHaveBeenCalled()
+    expect(weatherActions.lib.setTemperatureUnitToF).toHaveBeenCalledWith()
   });
 
   it('should set temperature unit for SI', async () => {
     await weatherActions.loadWeatherDataWithThunk(TEST_LOC, Units.SI)(dispatch);
 
-    expect(weatherActions.lib.setTemperatureUnitToC).toHaveBeenCalled()
+    expect(weatherActions.lib.setTemperatureUnitToC).toHaveBeenCalledWith()
   });
 
-  it('should set summary text', async () => {
+  it('should set currently', async () => {
     await weatherActions.loadWeatherDataWithThunk(TEST_LOC)(dispatch);
-    expect(weatherActions.lib.setSummary).toHaveBeenCalledWith('this is hourly summary');
+    expect(weatherActions.lib.setCurrently).toHaveBeenCalledWith(returnedWeatherData.currently);
   });
 
-  it('should set icon', async () => {
-    await weatherActions.loadWeatherDataWithThunk(TEST_LOC)(dispatch);
-    expect(weatherActions.lib.setIcon).toHaveBeenCalledWith('icon');
-  });
+  // it('should set icon', async () => {
+  //   await weatherActions.loadWeatherDataWithThunk(TEST_LOC)(dispatch);
+  //   expect(weatherActions.lib.setIcon).toHaveBeenCalledWith('icon');
+  // });
 });

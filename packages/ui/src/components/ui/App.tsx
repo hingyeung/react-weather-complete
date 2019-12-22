@@ -3,12 +3,12 @@ import { Component } from 'react';
 import ReactWeather from '../containers/ReactWeather';
 import { IAppProps } from '../../types';
 import LocationService from "../../services/LocationService";
-import styled from 'styled-components';
+// import styled from 'styled-components';
 
-const AppWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-`;
+// const AppWrapper = styled.div`
+//   display: flex;
+//   justify-content: center;
+// `;
 
 class App extends Component<IAppProps> {
 
@@ -26,9 +26,9 @@ class App extends Component<IAppProps> {
 
   render() {
     return (
-      <AppWrapper>
+      // <AppWrapper>
         <ReactWeather/>
-      </AppWrapper>
+      // </AppWrapper>
     );
   }
 }

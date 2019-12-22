@@ -10,17 +10,20 @@ import '../../styles/html5reset-1.6.1.css';
 import WeatherIcon from '../containers/WeatherIcon';
 import LocationSelector from "../containers/LocationSelector";
 import Author from './Author';
+import ForecastStrip from '../containers/ForecastStrip';
 
 const RWContainer = styled.div`
   font-family: Arial, Helvetica, sans-serif;
   height: 280px;
-  width: 480px;
+  width: 90%;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
 `;
 
 const LocationDisplayContainerSC = styled.div`
-  display: flex;
-  justify-content: center;
+  // display: flex;
+  // justify-content: center;
 `;
 
 const Row2 = styled.div`
@@ -29,6 +32,7 @@ const Row2 = styled.div`
   margin-top: 20px;
   font-size: 72px;
   justify-content: center;
+  flex-shrink: 0;
 `;
 
 const RWHeading = styled.h1`
@@ -64,6 +68,7 @@ class ReactWeather extends Component<IReactWeatherProps> {
           <WeatherIcon/>
           <Temperature/>
         </Row2>
+        <ForecastStrip/>
         <LastUpdated/>
         <Author />
       </RWContainer>

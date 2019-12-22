@@ -6,8 +6,8 @@ import {toggleTemperatureUnit} from '../../actions/WeatherActions'
 
 const mapStateToProps = (state: AppState) => {
   return {
-    temperature: state.temperature,
-    apparentTemperature: state.apparentTemperature,
+    temperature: state.currently.temperature,
+    apparentTemperature: state.currently.apparentTemperature,
     temperatureUnit: state.temperatureUnit
   };
 };

@@ -91,4 +91,4 @@ cdk.context.json
 cdk.out
 /build-infra
 .env
-.env.infra*
+.env.*

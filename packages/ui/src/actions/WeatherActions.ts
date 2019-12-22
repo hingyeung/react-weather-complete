@@ -1,5 +1,5 @@
 import { createAction } from 'typesafe-actions';
-import { TemperatureUnit, Units } from '../types';
+import { TemperatureUnit, Units, IWeatherInfo } from '../types';
 import Location from '../services/Location';
 import { Dispatch } from 'redux';
 import darkSkyService from '../services/darksky';
@@ -9,6 +9,15 @@ export const setTemperature = createAction('weather/SET_TEMPERATURE', resolve =>
   return (temperature: number) => resolve(temperature);
 });
 
+export const setCurrently = createAction('weather/SET_CURRENTLY', resolve => {
+  return (currently: IWeatherInfo) => resolve(currently);
+});
+
+export const setHourlyForecasts = createAction('weather/SET_HOURLY_FORECASTS', resolve => {
+  return (hourlyForecasts: IWeatherInfo[]) => resolve(hourlyForecasts);
+});
+
+// the following actions can be removed later
 export const setApparentTemperature = createAction('weather/SET_APPARENT_TEMPERATURE', resolve => {
   return (apparentTemperature: number) => resolve(apparentTemperature);
 });
@@ -24,6 +33,7 @@ export const setIcon = createAction('weather/SET_ICON', resolve => {
 export const setSummary = createAction('weather/SET_SUMMARY', resolve => {
   return (summary: string) => resolve(summary)
 });
+// the above actions can be removed later
 
 export const setTemperatureUnitToF = createAction(
   'weather/SET_TEMPERATURE_UNIT_TO_F', resolve => {
@@ -46,11 +56,18 @@ export const loadWeatherDataWithThunk = (location: Location, units: Units = Unit
     .then((resp: any) => {
       dispatch(
         // see exported "lib" object below
-        lib.setTemperature(parseFloat(resp.data.currently.temperature))
+        lib.setCurrently(resp.data.currently)
       );
       dispatch(
-        lib.setApparentTemperature(parseFloat(resp.data.currently.apparentTemperature))
+        lib.setHourlyForecasts(resp.data.hourly.data)
       );
+      // dispatch(
+      //   // see exported "lib" object below
+      //   lib.setTemperature(parseFloat(resp.data.currently.temperature))
+      // );
+      // dispatch(
+      //   lib.setApparentTemperature(parseFloat(resp.data.currently.apparentTemperature))
+      // );
       units === Units.SI ?
         dispatch(
           lib.setTemperatureUnitToC()
@@ -58,15 +75,15 @@ export const loadWeatherDataWithThunk = (location: Location, units: Units = Unit
         dispatch(
           lib.setTemperatureUnitToF()
         );
-      dispatch(
-        lib.setSummary(resp.data.hourly.summary)
-      );
-      dispatch(
-        lib.setLastUpdated(resp.data.currently.time)
-      );
-      dispatch(
-        lib.setIcon(resp.data.currently.icon)
-      );
+      // dispatch(
+      //   lib.setSummary(resp.data.hourly.summary)
+      // );
+      // dispatch(
+      //   lib.setLastUpdated(resp.data.currently.time)
+      // );
+      // dispatch(
+      //   lib.setIcon(resp.data.currently.icon)
+      // );
     })
     .catch((error: any) => console.log(error));
 };
@@ -75,12 +92,14 @@ export const loadWeatherDataWithThunk = (location: Location, units: Units = Unit
 // in the same module.
 // https://luetkemj.github.io/170421/mocking-modules-in-jest
 export const lib = {
+  setCurrently,
+  setHourlyForecasts,
   setTemperature,
-  setSummary,
-  setLastUpdated,
-  setApparentTemperature,
+  // setSummary,
+  // setLastUpdated,
+  // setApparentTemperature,
   setTemperatureUnitToC,
   setTemperatureUnitToF,
-  setIcon,
+  // setIcon,
   loadWeatherDataWithThunk
 };

@@ -1,12 +1,13 @@
 import appReducer from '../reducers'
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk';
+import { WeatherAction } from 'src/types';
 
 // a function returning a function returning a function
 // a middleware that log before and after action dispatch
-const stateChangeLogger = (store: any) => (next: any) => (action: any) => {
+const stateChangeLogger = (store: any) => (next: any) => (action: WeatherAction) => {
   // before state change
-  console.groupCollapsed('State change');
+  console.groupCollapsed(`State change for ${action.type}`);
   console.log('before');
   console.dir(store.getState());
 

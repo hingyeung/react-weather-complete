@@ -8,7 +8,7 @@ const LocationDisplaySC = styled.div`
   text-align: center;
   cursor: pointer;
   color: steelblue;
-  border-bottom: 1px solid steelblue;
+  text-decoration: underline;
 `;
 
 const LocationDisplay: React.SFC<ILocationDisplayProps> = (props) => {

@@ -19,15 +19,27 @@ export enum Units {
 }
 
 export const TEMPERATURE_UNSET = -99999;
+export const CURRENTLY_UNSET: IWeatherInfo = {
+  temperature: TEMPERATURE_UNSET,
+  apparentTemperature: TEMPERATURE_UNSET,
+  summary: "",
+  time: 0,
+  icon: ""
+};
 
-export interface AppState {
-  location: Location;
+export interface IWeatherInfo {
   temperature: number;
   apparentTemperature: number;
   summary: string;
-  temperatureUnit: TemperatureUnit;
-  lastUpdated: number;
+  time: number;
   icon: string;
+}
+
+export interface AppState {
+  location: Location;
+  currently: IWeatherInfo;
+  hourlyForecasts: IWeatherInfo[];
+  temperatureUnit: TemperatureUnit;
   showLocationSelector: boolean;
 }
 
