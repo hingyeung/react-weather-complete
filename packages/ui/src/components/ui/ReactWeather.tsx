@@ -10,7 +10,7 @@ import '../../styles/html5reset-1.6.1.css';
 import WeatherIcon from '../containers/WeatherIcon';
 import LocationSelector from "../containers/LocationSelector";
 import Author from './Author';
-import ForecastStrip from '../containers/ForecastStrip';
+import ForecastPanel from '../containers/ForecastPanel';
 
 const RWContainer = styled.div`
   font-family: Arial, Helvetica, sans-serif;
@@ -68,7 +68,7 @@ class ReactWeather extends Component<IReactWeatherProps> {
           <WeatherIcon/>
           <Temperature/>
         </Row2>
-        <ForecastStrip/>
+        <ForecastPanel/>
         <LastUpdated/>
         <Author />
       </RWContainer>
